@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="SPARQL endpoint of the LOD Laundromat">
     <meta name="author" content="Laurens Rietveld">
-    <link rel="icon" href="/imgs/laundry.ico">
+    <link rel="icon" href="resources/images/linkeddataIco.png">
     <title>SPARQL</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/YASGUI/dist/yasgui.min.css" rel="stylesheet">
-    <link href="resources/css/style.css" rel="stylesheet">
+    <link href="resources/css/ekbcp.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -41,29 +41,36 @@
 			</nav>
 		</div>
 	</div>
-    <div class="jumbotron" style="height:100%; position:relative;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <img
-                alt="SPARQL endpoint"
-                class="mediumLogo"
-                src="/imgs/labels.png"
-            >
+      <div class="jumbotron" style="height:100%; position:relative;">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-4">
+                      <img
+                              alt="SPARQL endpoint"
+                              class="mediumLogo"
+                              src="resources/images/linkeddataIco.png"
+                      >
+                  </div>
+                  <div class="col-md-8" style="vertical-align: middle;">
+                      <h1>SPARQL LinkedData</h1>
+                      <p>
+                          Fully managed, high performance, high avaibility, scalable and secure RDF graph database as a service with a private SPARQL endpoint.
+                      </p>
+                  </div>
+              </div>
           </div>
-          <div class="col-md-8" style="vertical-align: middle;">
-            <h1>SPARQL Access</h1>
-            <p>
-              For an in-depth overview of the data cleaned
-              by the LOD Laundromat, we provide a live SPARQL endpoint
-              in which all meta-data can be queried.
-            </p>
-          </div>
-        </div>
       </div>
-    </div>
-  
-    <div class="jumbotron" style="height:100%;background-color:white;">
+
+
+        <div style="float: right" >
+
+            <p class="rowLabel"
+            >
+                <span >Endpoint: <input id = "actualEndpoint" type="text" class="textInputsRow" name="endPoint" value="endpoint"></span>
+                <span >Username: <input id = "ekbUser" type="text" class="textInputsRow" name="userName" value="demo" align="center"></span>
+                <span >Password: <input id = "ekbPassword" type="password" class="textInputsRow" name="passwd" value="demo" align="right"></span><br>
+            </p>
+        </div>
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
@@ -72,7 +79,7 @@
           </div>
         </div>
       </div>
-    </div>
+
   
     <!--
         Bootstrap core JavaScript
