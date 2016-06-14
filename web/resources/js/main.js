@@ -4,8 +4,6 @@ if (!console.log) {
   console = {log:function(){}};
 };
 var analyticsId = 'UA-51130014-1';
-var prefixes = "PREFIX llo: <http://lodlaundromat.org/ontology/>\n\
-PREFIX ll: <http://lodlaundromat.org/resource/>\n";
 var llVersion = 12;
 var queryDefaultValues={
 	endpoint:"https://hub1.linkeddata.center/demo/sparql",
@@ -14,7 +12,6 @@ var queryDefaultValues={
 }
 
 var sparql = {
-	url : "http://sparql.backend.lodlaundromat.org",
 	graphs: {
 		main: "http://lodlaundromat.org#" + llVersion,
 		seedlist: "http://lodlaundromat.org#seedlist",
@@ -22,37 +19,6 @@ var sparql = {
 		error: "http://lodlaundromat.org/ontology#error",
 		http: "http://lodlaundromat.org/ontology#http"
 	},
-	prefixes: prefixes,
-	};
-
-var api = {
-  "laundryBasket": {
-    "seedUpdateApi": "http://backend.lodlaundromat.org"
-  },
-  "notifications": {
-      "api": "http://notify.lodlaundromat.d2s.labs.vu.nl"
-  },
-  "ldf": {
-      browser: "http://ldf.lodlaundromat.org/",
-      query: function(md5) {
-          var ldfUrl = api.ldf.browser + md5;
-          return "http://client.linkeddatafragments.org/#startFragment=" + encodeURIComponent(ldfUrl);
-      },
-  },
-
-  "namespace": "http://lodlaundromat.org/vocab#",
-  "wardrobe": {
-    "download": function(md5, type) {
-      var url = "http://download.lodlaundromat.org/" + md5;
-      if (type) url += "?type=" + type;
-      return url;
-    }
-  }
-};
-
-
-var getSparqlLink = function(query) {
-  return "/sparql?query=" + encodeURIComponent(query);
 };
 
 
@@ -82,11 +48,7 @@ if (typeof d3 != 'undefined') {
   var formatLargeShortForm = d3.format(".2s");
   var formatNumber = d3.format(",n");
 }
-var goToHash = function(){
-  if(window.location.hash) {
-    $.scrollTo($(window.location.hash), { duration: 500 });
-  }
-};
+
 
 $(document).ready(function(){});
 
@@ -105,31 +67,6 @@ var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hid
 var modal = modalDiv.modal({show: false});
 
 
-/**
- * config {
- *  header: null, string, or jquery el
- *  content: string (text) or jquery el
- *  footer: null, string(html), or jquery el
- * }
- */
-var drawModal = function(config) {
-  var header = modalDiv.find(".modal-header");
-  if (!config.header) {
-    if (header.length > 0) modalDiv.find(".modal-header").remove();
-  } else {
-    if (header.length == 0) header = $("<div class='modal-header'></div>").prependTo(modalDiv.find(".modal-content"));
-    if (typeof config.header == "string") {
-      modalDiv.find(".modal-header").html('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
-        '<h4 class="modal-title">' + config.header + '</h4>');
-    } else {
-      modalDiv.find(".modal-header").empty().append(config.header);
-    }
-  }
-  modalDiv.find(".modal-body").empty().append(config.content);
-  modal.modal("show");
-};
-
-
 
 /**
  * draw header
@@ -144,11 +81,11 @@ var drawHeader = function() {
     $("<span></span>").text(config.title).appendTo(anchor);
   };
   var items = [
-    {href: "/pagina", img: "/imgs/laundry.png", title: "Config"},
-    {href: "/basket", img: "/imgs/basket.png", title: "New Ingestion"},
-    {href: "/wardrobe", img: "/imgs/wardrobe.png", title: "Status"},
+    {href: "/pagina",  title: "Config"},
+    {href: "/basket",  title: "New Ingestion"},
+    {href: "/wardrobe", title: "Status"},
     {href: "/lodlab", title: "History"},
-    {href: "/sparql", img: "/imgs/labels.png", title: "SPARQL"},
+    {href: "/sparql",  title: "SPARQL"},
     {href: "/services", img: "/imgs/labels.png", title: "Queries"},
   ];
   var lastIndexOf = document.URL.lastIndexOf("/");
@@ -208,7 +145,7 @@ var getAndDrawCounter = function() {
     });
   }
 };
-getAndDrawCounter();
+//getAndDrawCounter();
 
 
 //this function is useful for printing charts to pdf.
@@ -223,37 +160,5 @@ var deleteEveryDivExcept = function(divId) {
 };
 
 
-var showNotification = function(msg) {
-    if (msg) {
-        $('<div>', {class: 'alert alert-info', role: 'alert'}).text(msg).prependTo($('body'));
-    }
-}
-//showNotification('We have upgraded the Washing Machine crawling mechanism. For consistency reasons, we have re-initiated the crawl from scratch. (taking the manually added seed-items from the previous crawl into account) (20 Feb. 2015)');
 
-var setCookie = function(name, value, days) {
-    var expires;
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toGMTString();
-    }
-    else {
-        expires = "";
-    }
-    document.cookie = name + "=" + value + expires + "; path=/";
-}
 
-function getCookie(c_name) {
-    if (document.cookie.length > 0) {
-        c_start = document.cookie.indexOf(c_name + "=");
-        if (c_start != -1) {
-            c_start = c_start + c_name.length + 1;
-            c_end = document.cookie.indexOf(";", c_start);
-            if (c_end == -1) {
-                c_end = document.cookie.length;
-            }
-            return unescape(document.cookie.substring(c_start, c_end));
-        }
-    }
-    return "";
-}
