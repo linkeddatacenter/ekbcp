@@ -6,19 +6,24 @@ if (!console.log) {
 var analyticsId = 'UA-51130014-1';
 var llVersion = 12;
 var queryDefaultValues={
-	endpoint:"https://hub1.linkeddata.center/demo/sparql",
-	user:"demo",
-	password:"demo",
+  endpoint:"http://linkeddata.center/test.php",
+  user:"demo",
+  paswd:"demo",
 }
-
+var setDefaultParams=function(){
+  var uriField=document.getElementById("actualEndpoint").value=queryDefaultValues.endpoint;
+  var userField=document.getElementById("ekbUser").value=queryDefaultValues.user;
+  var passField=document.getElementById("ekbPassword").value=queryDefaultValues.paswd;
+};
+setDefaultParams();
 var sparql = {
-	graphs: {
-		main: "http://lodlaundromat.org#" + llVersion,
-		seedlist: "http://lodlaundromat.org#seedlist",
-		metrics: "http://lodlaundromat.org#metrics-" + llVersion,
-		error: "http://lodlaundromat.org/ontology#error",
-		http: "http://lodlaundromat.org/ontology#http"
-	},
+  graphs: {
+    main: "http://lodlaundromat.org#" + llVersion,
+    seedlist: "http://lodlaundromat.org#seedlist",
+    metrics: "http://lodlaundromat.org#metrics-" + llVersion,
+    error: "http://lodlaundromat.org/ontology#error",
+    http: "http://lodlaundromat.org/ontology#http"
+  },
 };
 
 
@@ -35,10 +40,6 @@ $.ajaxSetup({
   url : sparql.url,
 });
 
-$("<div id='loader'><img src='resources/images/loader.gif'></div>").appendTo($("body"));
-
-
-
 /**
  * helpers
  */
@@ -53,17 +54,17 @@ if (typeof d3 != 'undefined') {
 $(document).ready(function(){});
 
 var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hidden='true'></div>")
-.html('<div class="modal-dialog modal-lg ">' +
-'  <div class="modal-content">' +
-'    <div class="modal-header">' +
-'    </div>' +
-'    <div class="modal-body">' +
-'      <p>One fine body&hellip;</p>' +
-'    </div>' +
-'    <div class="modal-footer"></div>' +
-'  </div><!-- /.modal-content -->' +
-'</div><!-- /.modal-dialog -->')
-.appendTo($("body"));
+    .html('<div class="modal-dialog modal-lg ">' +
+        '  <div class="modal-content">' +
+        '    <div class="modal-header">' +
+        '    </div>' +
+        '    <div class="modal-body">' +
+        '      <p>One fine body&hellip;</p>' +
+        '    </div>' +
+        '    <div class="modal-footer"></div>' +
+        '  </div><!-- /.modal-content -->' +
+        '</div><!-- /.modal-dialog -->')
+    .appendTo($("body"));
 var modal = modalDiv.modal({show: false});
 
 
@@ -129,14 +130,14 @@ var getAndDrawCounter = function() {
     $.ajax({
       url: sparql.url,
       data: [
-             {name: "default-graph-uri", value: sparql.graphs.main},
-             {name: "query", value: sparql.queries.totalTripleCount}
+        {name: "default-graph-uri", value: sparql.graphs.main},
+        {name: "query", value: sparql.queries.totalTripleCount}
       ],
       success: function(data) {
         if (data.results && data.results.bindings && data.results.bindings.length > 0 && data.results.bindings[0].totalTriples && data.results.bindings[0].totalTriples.value > 0) {
           draw(data.results.bindings[0].totalTriples.value);
         } else {
-        	$("#counterWrapper").hide();
+          $("#counterWrapper").hide();
         }
       },
       headers: {
@@ -145,19 +146,7 @@ var getAndDrawCounter = function() {
     });
   }
 };
-//getAndDrawCounter();
-
-
-//this function is useful for printing charts to pdf.
-var deleteEveryDivExcept = function(divId) {
-  $("div").hide();
-  $("h1").hide();
-  $("h2").hide();
-  $("h3").hide();
-  var targetDiv = $("#" + divId);
-  targetDiv.parents().show();
-  targetDiv.show();
-};
+getAndDrawCounter();
 
 
 
