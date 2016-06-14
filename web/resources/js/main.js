@@ -35,7 +35,7 @@ $.ajaxSetup({
   url : sparql.url,
 });
 
-$("<div id='loader'><img src='/imgs/loader.gif'></div>").appendTo($("body"));
+$("<div id='loader'><img src='resources/images/loader.gif'></div>").appendTo($("body"));
 
 
 
