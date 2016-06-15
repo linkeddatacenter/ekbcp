@@ -10,7 +10,6 @@ $(document).ready(function() {
     passWord = document.getElementById("ekbPassword").value;
     endPoint = document.getElementById("actualEndpoint").value;
 
-
     var namedGraphs = getUrlParams("named-graph-uri");
     //var defaultGraphs = [sparql.graphs.main, sparql.graphs.seedlist, sparql.graphs.metrics, sparql.graphs.error, sparql.graphs.http];
     var defaultGraphs = [];
@@ -27,14 +26,8 @@ $(document).ready(function() {
         "	} \n" +
         "} LIMIT 10";
     yasgui = YASGUI(document.getElementById("sparql"));
-
-
-    //Only to see if the encryption goes
-    //(add this in index.html before run: <span id="prova"></span> )
-    // var end = document.getElementById("prova");
-    // end.innerHTML = authentication + " " + atob(authentication) +
-    // " " + userName + ":" + passWord;
 });
+
 var getUrlParams = function(key) {
     var values = [];
     var pageUrl = window.location.search.substring(1);
@@ -55,10 +48,15 @@ $.ajaxSetup({
     },
 });
 
-var resetParams=function () {  //funzione da terminare
+//reassign the endpoint and the Authorization header
+//everytime there is a change on one of the inputs
+var resetParams=function () {
+	userName  = document.getElementById("ekbUser").value;
+	passWord  = document.getElementById("ekbPassword").value;
     for (var tabId in yasgui.tabs) {
         var tab = yasgui.tabs[tabId];
         tab.persistentOptions.yasqe.sparql.endpoint = document.getElementById("actualEndpoint").value;
+        tab.persistentOptions.yasqe.sparql.headers = {Authorization: 'Basic ' + btoa(userName + ":" + passWord)};
         tab.refreshYasqe();
     }
 }
