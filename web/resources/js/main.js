@@ -4,27 +4,30 @@ if (!console.log) {
   console = {log:function(){}};
 };
 var analyticsId = 'UA-51130014-1';
-var llVersion = 12;
-var queryDefaultValues={
-  endpoint:"http://linkeddata.center/test.php",
+
+var setDefaultParams=function(){
+  document.getElementById("actualEndpoint").value=sparql.endpoint;
+  document.getElementById("ekbUser").value=sparql.user;
+  document.getElementById("ekbPassword").value=sparql.paswd;
+};
+
+var sparql = {
+  endpoint:"https://hub1.linkeddata.center/demo/sparql",
   user:"demo",
   paswd:"demo",
-}
-var setDefaultParams=function(){
-  var uriField=document.getElementById("actualEndpoint").value=queryDefaultValues.endpoint;
-  var userField=document.getElementById("ekbUser").value=queryDefaultValues.user;
-  var passField=document.getElementById("ekbPassword").value=queryDefaultValues.paswd;
+  graphs: {
+//    main: "http://lodlaundromat.org#" + llVersion,
+//    seedlist: "http://lodlaundromat.org#seedlist",
+//    metrics: "http://lodlaundromat.org#metrics-" + llVersion,
+//    error: "http://lodlaundromat.org/ontology#error",
+//    http: "http://lodlaundromat.org/ontology#http"
+  }
 };
 setDefaultParams();
-var sparql = {
-  graphs: {
-    main: "http://lodlaundromat.org#" + llVersion,
-    seedlist: "http://lodlaundromat.org#seedlist",
-    metrics: "http://lodlaundromat.org#metrics-" + llVersion,
-    error: "http://lodlaundromat.org/ontology#error",
-    http: "http://lodlaundromat.org/ontology#http"
-  },
-};
+
+
+
+
 
 
 // Init loader.
@@ -111,43 +114,4 @@ var drawHeader = function() {
   }
 };
 drawHeader();
-
-var getAndDrawCounter = function() {
-  var draw = function(count) {
-    var holder = $('.counter');
-    var countString = count.toString();
-    var charsLeft = countString.length;
-    for (var i = 0; i < countString.length; i++) {
-//    <span class="position"><span class="digit static" style="top: 0px; opacity: 1;">0</span></span>
-      holder.append($('<span>' + countString.charAt(i) + '</span>'));
-      charsLeft = charsLeft - 1;
-      if (charsLeft % 3 == 0 && charsLeft > 0) {
-        holder.append("<span>.</span>");
-      }
-    }
-  };
-  if ($('.counter').length > 0) {
-    $.ajax({
-      url: sparql.url,
-      data: [
-        {name: "default-graph-uri", value: sparql.graphs.main},
-        {name: "query", value: sparql.queries.totalTripleCount}
-      ],
-      success: function(data) {
-        if (data.results && data.results.bindings && data.results.bindings.length > 0 && data.results.bindings[0].totalTriples && data.results.bindings[0].totalTriples.value > 0) {
-          draw(data.results.bindings[0].totalTriples.value);
-        } else {
-          $("#counterWrapper").hide();
-        }
-      },
-      headers: {
-        "Accept": "application/sparql-results+json,*/*;q=0.9"
-      }
-    });
-  }
-};
-getAndDrawCounter();
-
-
-
 
