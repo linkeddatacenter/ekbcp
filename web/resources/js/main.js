@@ -3,7 +3,7 @@
 if (!console.log) {
   console = {log:function(){}};
 };
-var analyticsId = 'UA-51130014-1';
+var analyticsId = 'UA-68082875-1';
 
 var setDefaultParams=function(){
   document.getElementById("actualEndpoint").value=sparql.endpoint;
@@ -113,5 +113,5 @@ var drawHeader = function() {
     addItem(items[i]);
   }
 };
-drawHeader();
+//drawHeader();
 

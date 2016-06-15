@@ -4,19 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="SPARQL endpoint of the LOD Laundromat">
-    <meta name="author" content="Laurens Rietveld">
+    <meta name="description" content="SPARQL control panel for LinkedData.Center">
+    <meta name="author" content="TurtleTeam (T.Abbondi E.Biella, L.Longhi, T.Redaelli, R.Milani)">
     <link rel="icon" href="resources/images/linkeddataIco.png">
     <title>SPARQL</title>
 
     <!-- Bootstrap core CSS -->
-    <!--link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
 		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!--link href="bower_components/YASGUI/dist/yasgui.min.css" rel="stylesheet"-->
 	<link href='https://cdn.jsdelivr.net/yasgui/2.3.1/yasgui.min.css' rel='stylesheet' type='text/css' crossorigin="anonymous" >
     <link href="resources/css/ekbcp.css" rel="stylesheet">
-    <!--link rel='stylesheet' type='text/css'  href="https://rawgit.com/linkeddatacenter/ekbcp/master/web/resources/css/ekbcp.css" -->
     
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -26,7 +23,6 @@
     <link rel="stylesheet" href="/bower_components/github-fork-ribbon-css/gh-fork-ribbon.ie.css">
     <![endif]-->
     <style>
-
         .endpointText {display:none !important;}
     </style>
 </head>
@@ -58,9 +54,9 @@
                 >
             </div>
             <div class="col-md-8" style="vertical-align: middle;">
-                <h1>SPARQL LinkedData</h1>
+                <h1>SPARQL query editor</h1>
                 <p>
-                    Fully managed, high performance, high avaibility, scalable and secure RDF graph database as a service with a private SPARQL endpoint.
+                    Use your credentials to try our SPARQL endpoints from browser.
                 </p>
             </div>
         </div>
@@ -111,7 +107,7 @@
 <script src='https://cdn.jsdelivr.net/yasgui/2.3.1/yasgui.min.js' crossorigin="anonymous" ></script>
 <script src="resources/js/main.js"></script>
 <script src="resources/js/sparql.js"></script>
-<!--      <script>
+<script>
      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -120,6 +116,6 @@
      ga('create', analyticsId, 'auto');
      ga('send', 'pageview');
 
-    </script>-->
+</script>
 </body>
 </html>
