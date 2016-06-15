@@ -6,3 +6,5 @@ EKBCP project provides an interactive control panel for [LinkedData.Center APIs 
 The project http://doc.yasgui.org/ 
 
 EKBCP  use [YASGUI](http://doc.yasgui.org/) and [3Dsparql](http://biohackathon.org/d3sparql/) libraries integrated with the EKB APIs provided by [LinkedData.Center](http://LinkedData.Center/)
+
+Have a look to our EKBCP service at [http://cpanel.linkeddata.center/](http://doc.yasgui.org/)
