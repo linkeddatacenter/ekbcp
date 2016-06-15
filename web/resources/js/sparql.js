@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     YASGUI.YASQE.defaults.sparql.namedGraphs = namedGraphs;
     YASGUI.YASQE.defaults.sparql.defaultGraphs = defaultGraphs;
-    YASGUI.YASQE.defaults.sparql.endpoint = "http://linkeddata.center/test.php";
+    YASGUI.YASQE.defaults.sparql.endpoint = endPoint;
     YASGUI.YASQE.defaults.sparql.headers = {Authorization: base};
     YASGUI.YASQE.defaults.value = /*sparql.prefixes +*/
         "SELECT DISTINCT ?properties ?classes WHERE {\n"+
@@ -66,3 +66,10 @@ $.ajaxSetup({
     },
 });
 
+var resetParams=function () {  //funzione da terminare
+    for (var tabId in yasgui.tabs) {
+        var tab = yasgui.tabs[tabId];
+        tab.persistentOptions.yasqe.sparql.endpoint = document.getElementById("actualEndpoint").value;
+        tab.refreshYasqe();
+    }
+}
