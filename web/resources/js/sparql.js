@@ -55,3 +55,10 @@ $.ajaxSetup({
     },
 });
 
+var resetParams=function () {  //funzione da terminare
+    for (var tabId in yasgui.tabs) {
+        var tab = yasgui.tabs[tabId];
+        tab.persistentOptions.yasqe.sparql.endpoint = document.getElementById("actualEndpoint").value;
+        tab.refreshYasqe();
+    }
+}
