@@ -23,7 +23,6 @@ var sparql = {
 //    http: "http://lodlaundromat.org/ontology#http"
   }
 };
-setDefaultParams();
 
 // Init loader.
 $.ajaxSetup({
@@ -64,7 +63,44 @@ var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hid
     .appendTo($("body"));
 var modal = modalDiv.modal({show: false});
 
-
+//draw button config
+var drawConfig=function () {
+  var drawMenu=function(config){
+    //create div contains the params
+    var div=$("<div></div>").attr({
+      class:"collapse",
+      id:"params",
+      "aria-expanded":"true",
+      style:"height:1px"
+    }).appendTo(container); //insert into div container
+    document.getElementById("params").innerHTML+="" +
+        "\<form class=\"navbar-form navbar-right\" role=\"search\"\>" +
+        "<div class=\"form-group\">" +
+        "<input type=\"text\" class=\"form-control\" placeholder=\"Endpoint\" id = \"actualEndpoint\">" +
+        "<input type=\"text\" class=\"form-control\" placeholder=\"User\" id = \"ekbUser\">" +
+        "<input type=\"password\" class=\"form-control\" placeholder=\"Password\" id = \"ekbPassword\">" +
+        "</div><button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\"\">Set Credential</button> </form>"
+    var item = $("<ul></ul>").attr({
+      class:config.classUL
+    }).appendTo("#nav"); //insert into div nav
+    var elem = $("<li></li>").appendTo(item);
+    if (config.active) item.addClass(config.class);
+    var anchor = $("<a></a>").appendTo(elem);
+    if (config.newWindow) anchor.attr("target", "_blank");
+//    $("<img/>").attr("src", config.img).appendTo(anchor);
+    var button=$("<button></button>").appendTo(anchor);
+    button.attr({
+      "class":config.classButton,
+      "data-toggle":"collapse",
+      "data-target":"#params",
+      "aria-expanded":"false"
+    });
+    var span=$("<span></span>").attr("aria-hidden","true").appendTo(button);
+    span.addClass("glyphicon glyphicon-cog");
+  };
+  var item= {classUL: "nav navbar-nav navbar-right", id: "menu", class:"active",  title: "MyAccount  ",classButton:"btn btn-sm btn-default"};
+  drawMenu(item);
+};
 
 /**
  * draw header
@@ -79,7 +115,6 @@ var drawHeader = function() {
     $("<span></span>").text(config.title).appendTo(anchor);
   };
   var items = [
-    {href: "/config-",  title: "Config"},
     {href: "/ingestion",  title: "New Ingestion"},
     {href: "/status", title: "Status"},
     {href: "/history", title: "History"},
@@ -106,3 +141,5 @@ var drawHeader = function() {
   }
 };
 drawHeader();
+drawConfig();
+setDefaultParams();
