@@ -25,5 +25,4 @@ Thomas Abbondi, Enrico Biella, Leonardo Longhi, Tommaso Redaelli, Prof. Raffaele
 
 ## License
 EKBCP is freely available with MIT license.
-=======
-Have a look to our EKBCP service at [http://linkeddatacenter.github.io/ekbcp/web/](http://linkeddatacenter.github.io/ekbcp/web/)
+
