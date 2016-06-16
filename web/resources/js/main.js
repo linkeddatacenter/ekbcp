@@ -3,7 +3,7 @@
 if (!console.log) {
   console = {log:function(){}};
 };
-var analyticsId = 'UA-68082875-1';
+var analyticsId = 'UA-51130014-1';
 
 var setDefaultParams=function(){
   document.getElementById("actualEndpoint").value=sparql.endpoint;
@@ -24,11 +24,6 @@ var sparql = {
   }
 };
 setDefaultParams();
-
-
-
-
-
 
 // Init loader.
 $.ajaxSetup({
@@ -52,7 +47,6 @@ if (typeof d3 != 'undefined') {
   var formatLargeShortForm = d3.format(".2s");
   var formatNumber = d3.format(",n");
 }
-
 
 $(document).ready(function(){});
 
@@ -81,14 +75,14 @@ var drawHeader = function() {
     if (config.active) item.addClass("active");
     var anchor = $("<a></a>").attr("href", config.href).appendTo(item);
     if (config.newWindow) anchor.attr("target", "_blank");
-//    $("<img/>").attr("src", config.img).appendTo(anchor);
+    // $("<img/>").attr("src", config.img).appendTo(anchor);
     $("<span></span>").text(config.title).appendTo(anchor);
   };
   var items = [
-    {href: "/pagina",  title: "Config"},
-    {href: "/basket",  title: "New Ingestion"},
-    {href: "/wardrobe", title: "Status"},
-    {href: "/lodlab", title: "History"},
+    {href: "/config-",  title: "Config"},
+    {href: "/ingestion",  title: "New Ingestion"},
+    {href: "/status", title: "Status"},
+    {href: "/history", title: "History"},
     {href: "/sparql",  title: "SPARQL"},
     {href: "/services", img: "/imgs/labels.png", title: "Queries"},
   ];
@@ -106,12 +100,9 @@ var drawHeader = function() {
 
   if (basename.length == 0) basename = "index.html";
 
-
-
   for (var i = 0; i < items.length; i++) {
     if (basename == items[i].href) items[i].active = true;
     addItem(items[i]);
   }
 };
-//drawHeader();
-
+drawHeader();

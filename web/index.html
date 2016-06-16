@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="SPARQL control panel for LinkedData.Center">
-    <meta name="author" content="TurtleTeam (T.Abbondi E.Biella, L.Longhi, T.Redaelli, R.Milani)">
-    <link rel="icon" href="resources/images/linkeddataIco.png">
+    <meta name="author" content="TurtleTeam (T.Abbondi, E.Biella, L.Longhi, T.Redaelli, R.Milani)">
+    <link rel="icon" href="resources/images/linkeddataBrowserIco.png">
     <title>SPARQL</title>
 
     <!-- Bootstrap core CSS -->
@@ -28,7 +28,7 @@
 </head>
 <body style="padding:0">
 <div id="pageHeader" class="navbar navbar-default bs-docs-nav">
-    <div class="container">
+    <div class="container">	
         <div class="navbar-header">
             <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -37,12 +37,53 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <ul id='topNavBar' class="nav navbar-nav">
-            </ul>
-        </nav>
+		
+		<div>
+		<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+			<ul id='topNavBar' class="nav navbar-nav" style="width:90%;float:left;">
+			</ul>
+			<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapseMenu" style="float:right;">
+				<img src="resources/images/iconGear.png">
+			</button>
+		</div>
+		</div>
+		
+		<div id="collapseMenu" class="collapse in">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="col-sm-4"></div>
+						<div  class="col-sm-2">
+							<p><span>
+								<label>Endpoint:</label>
+								<input id = "actualEndpoint" type="text" class="textInputsRow" name="endPoint">
+							</span></p>
+						</div>
+						<div  class="col-sm-1"></div>
+						<div  class="col-sm-2">
+							<p><span>
+								<label>Username:</label>
+								<input id = "ekbUser" type="text" class="textInputsRow" name="userName" align="center">
+							</span></p>
+						</div>
+						<div  class="col-sm-1"></div>
+						<div  class="col-sm-2">
+							<p><span>
+								<label>Password:</label>
+								<input id = "ekbPassword" type="password" class="textInputsRow" name="passwd" align="right">
+							</span><br></p>
+							<p><span>
+								<button id="setCredBtn" onclick="resetParams()" class="btn btn-default">Set credential</button>
+							</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
     </div>
 </div>
+
 <div class="jumbotron" style="height:100%; position:relative;">
     <div class="container">
         <div class="row">
@@ -60,29 +101,6 @@
                 </p>
             </div>
         </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row"
-    >
-        <div class="col-sm-12">
-
-            <div  class="col-sm-4"></div>
-
-
-        <div  class="col-sm-2">
-            <p><span ><label>Endpoint:</label> <input id = "actualEndpoint" type="text" class="textInputsRow" name="endPoint"  ></span></p>
-        </div>
-            <div  class="col-sm-1"></div>
-        <div  class="col-sm-2">
-            <p><span ><label>Username:</label> <input id = "ekbUser" type="text" class="textInputsRow" name="userName" align="center" ></span></p>
-        </div>
-            <div  class="col-sm-1"></div>
-        <div  class="col-sm-2">
-            <p><span ><label>Password:</label> <input id = "ekbPassword" type="password" class="textInputsRow" name="passwd" align="right" ></span><br></p>
-            <p><span ><button id="setCredBtn" onclick="resetParams()" class="btn btn-default">Set credential</button> </span ></p>
-        </div>
-    </div>
     </div>
 </div>
 
