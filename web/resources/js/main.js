@@ -73,13 +73,27 @@ var drawConfig=function () {
       "aria-expanded":"true",
       style:"height:1px"
     }).appendTo(container); //insert into div container
+    
     document.getElementById("params").innerHTML+="" +
         "\<form class=\"navbar-form navbar-right\" role=\"search\"\>" +
-        "<div class=\"form-group\">" +
-        "<input type=\"text\" class=\"form-control\" placeholder=\"Endpoint\" id = \"actualEndpoint\">" +
-        "<input type=\"text\" class=\"form-control\" placeholder=\"User\" id = \"ekbUser\">" +
-        "<input type=\"password\" class=\"form-control\" placeholder=\"Password\" id = \"ekbPassword\">" +
-        "</div><button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\"\">Set Credential</button> </form>"
+          "<div class=\"form-group\">" +
+            "<div class=\"input-group\">" +
+              "<span class=\"input-group-addon\">Endpoint</span>" +
+              "<input type=\"text\" class=\"form-control\" id=\"actualEndpoint\">" +
+            "</div>" +
+            "<div class=\"input-group\">" +
+              "<span class=\"input-group-addon\">Username</span>" +
+              "<input type=\"text\" class=\"form-control\" id=\"ekbUser\">" +
+            "</div>" +
+            "<div class=\"input-group\">" +
+              "<span class=\"input-group-addon\">Password</span>" +
+              "<input type=\"password\" class=\"form-control\" id=\"ekbPassword\">" +
+            "</div>" +
+          "</div>" +
+          "<button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\">Set Credential</button>" +
+        "</form>";
+
+
     var item = $("<ul></ul>").attr({
       class:config.classUL
     }).appendTo("#nav"); //insert into div nav
