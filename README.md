@@ -12,10 +12,10 @@ Have a look to our EKBCP service running at [http://linkeddatacenter.github.io/e
 The project is still ongoing..
 
 ## How to use/modify
-You need LinkedData.Center credential to access a knowledge base ( endpoint, usename and password). Y
+You need LinkedData.Center credential to access a knowledge base ( endpoint, usename and password). 
 
-	1 clone locally the project and open web/inde.html from a modern browser. You can use demo rread only credentials ( https://hub1.linkeddata.center/demo, demo, demo)
-	2 set your  credential in the upper right menu and enjoy the web interface. 
+ 1 clone locally the project and open web/inde.html from a modern browser. You can use demo rread only credentials ( https://hub1.linkeddata.center/demo, demo, demo)
+ 2 set your  credential in the upper right menu and enjoy the web interface. 
 	
 This project use aggerssively all cache leves (browser, protolol, CDN, applicative, graph db, etc), 
 if you make modification to sources plesase remember to clean all cached info before testing your modifications.
