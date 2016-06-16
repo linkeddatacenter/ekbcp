@@ -5,10 +5,16 @@ $(document).ready(function() {
     //There is some text on the HTML which we'll need to fill dynamically from javascript:
     $("#actualEndpoint").text(sparql.endpoint).attr("href", sparql.endpoint);
 
-    //get the username and password value in the inputs
+    //get the username, password and endpoint value in the inputs
     userName = document.getElementById("ekbUser").value;
     passWord = document.getElementById("ekbPassword").value;
     endPoint = document.getElementById("actualEndpoint").value;
+	
+	//if the endpoint insert is equal to the default
+	//it insert the /sparql for go to the database
+	if (endPoint == "https://hub1.linkeddata.center/demo") {
+		endPoint += "/sparql";
+	}
 
     var namedGraphs = getUrlParams("named-graph-uri");
     //var defaultGraphs = [sparql.graphs.main, sparql.graphs.seedlist, sparql.graphs.metrics, sparql.graphs.error, sparql.graphs.http];
@@ -51,11 +57,17 @@ $.ajaxSetup({
 //reassign the endpoint and the Authorization header
 //everytime there is a change on one of the inputs
 var resetParams=function () {
-	userName  = document.getElementById("ekbUser").value;
-	passWord  = document.getElementById("ekbPassword").value;
+	userName = document.getElementById("ekbUser").value;
+	passWord = document.getElementById("ekbPassword").value;
+	endPoint = document.getElementById("actualEndpoint").value;
+	
+	if (endPoint == "https://hub1.linkeddata.center/demo") {
+		endPoint += "/sparql";
+	}
+	
     for (var tabId in yasgui.tabs) {
         var tab = yasgui.tabs[tabId];
-        tab.persistentOptions.yasqe.sparql.endpoint = document.getElementById("actualEndpoint").value;
+        tab.persistentOptions.yasqe.sparql.endpoint = endPoint;
         tab.persistentOptions.yasqe.sparql.headers = {Authorization: 'Basic ' + btoa(userName + ":" + passWord)};
         tab.refreshYasqe();
     }
