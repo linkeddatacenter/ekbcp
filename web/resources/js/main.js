@@ -12,7 +12,7 @@ var setDefaultParams=function(){
 };
 
 var sparql = {
-  endpoint:"https://hub1.linkeddata.center/demo/sparql",
+  endpoint:"https://hub1.linkeddata.center/demo",
   user:"demo",
   paswd:"demo",
   graphs: {
