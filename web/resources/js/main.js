@@ -6,10 +6,35 @@ if (!console.log) {
 var analyticsId = 'UA-51130014-1';
 
 var setDefaultParams=function(){
-  document.getElementById("actualEndpoint").value=sparql.endpoint;
-  document.getElementById("ekbUser").value=sparql.user;
-  document.getElementById("ekbPassword").value=sparql.paswd;
+  var cookie = readCookie();
+  if(cookie != "null"){
+      var cookieValues = cookie.split(" ");
+      document.getElementById("actualEndpoint").value=cookieValues[0];
+      document.getElementById("ekbUser").value=cookieValues[1];
+      document.getElementById("ekbPassword").value=cookieValues[2];
+  } else {
+      document.getElementById("actualEndpoint").value=sparql.endpoint;
+      document.getElementById("ekbUser").value=sparql.user;
+      document.getElementById("ekbPassword").value=sparql.paswd;
+  }
 };
+
+var readCookie = function(){
+      var cname = "credentialCookie";
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              var cvalue = ""+c.substring(name.length,c.length);
+              return cvalue;
+          }
+      }
+      return "null";
+}
 
 var sparql = {
   endpoint:"https://hub1.linkeddata.center/demo",

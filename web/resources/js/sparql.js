@@ -71,4 +71,16 @@ var resetParams=function () {
         tab.persistentOptions.yasqe.sparql.headers = {Authorization: 'Basic ' + btoa(userName + ":" + passWord)};
         tab.refreshYasqe();
     }
+	
+	var cookieName = "credentialCookie";
+    var cookieValue = endPoint+" "+userName+" "+passWord;
+    var cookieLife = 14400; //14400 minute = 1 day
+    writeCookie(cookieName, cookieValue, cookieLife);
+}
+
+var writeCookie = function(name,value,life){
+     var d = new Date();
+     d.setTime(d.getTime() + (life*24*60*60*1000));
+     var expires = "expires="+ d.toUTCString();
+     document.cookie = name + "=" + value + "; " + expires;
 }
