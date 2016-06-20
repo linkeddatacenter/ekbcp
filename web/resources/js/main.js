@@ -154,11 +154,10 @@ var drawHeader = function() {
     $("<span></span>").text(config.title).appendTo(anchor);
   };
   var items = [
-    {href: "/ingestion",  title: "New Ingestion"},
-    {href: "/status", title: "Status"},
-    {href: "/history", title: "History"},
+    {href: "/config",  title: "Knowledge base"},
     {href: "/sparql",  title: "SPARQL"},
-    {href: "/services", img: "/imgs/labels.png", title: "Queries"},
+    {href: "/ingestion",  title: "Ingestion"},
+    {href: "/queries", title: "Queries"},
   ];
   var lastIndexOf = document.URL.lastIndexOf("/");
   var basename = "";
