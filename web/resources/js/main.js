@@ -3,7 +3,7 @@
 if (!console.log) {
   console = {log:function(){}};
 };
-var analyticsId = 'UA-51130014-1';
+var analyticsId = 'UA-68082875-1';
 
 var setDefaultParams=function(){
   var cookie = readCookie();
@@ -40,13 +40,6 @@ var sparql = {
   endpoint:"https://hub1.linkeddata.center/demo",
   user:"demo",
   paswd:"demo",
-  graphs: {
-//    main: "http://lodlaundromat.org#" + llVersion,
-//    seedlist: "http://lodlaundromat.org#seedlist",
-//    metrics: "http://lodlaundromat.org#metrics-" + llVersion,
-//    error: "http://lodlaundromat.org/ontology#error",
-//    http: "http://lodlaundromat.org/ontology#http"
-  }
 };
 
 // Init loader.
@@ -98,7 +91,7 @@ var drawConfig=function () {
       "aria-expanded":"true",
       style:"height:1px"
     }).appendTo(container); //insert into div container
-    
+
     document.getElementById("params").innerHTML+="" +
         "\<form class=\"navbar-form navbar-right\" role=\"search\"\>" +
           "<div class=\"form-group\">" +
@@ -149,15 +142,18 @@ var drawHeader = function() {
     var item = $("<li></li>").appendTo(topNavBar);
     if (config.active) item.addClass("active");
     var anchor = $("<a></a>").attr("href", config.href).appendTo(item);
-    if (config.newWindow) anchor.attr("target", "_blank");
-    // $("<img/>").attr("src", config.img).appendTo(anchor);
+    if (config.newWindow||config.href=="http://linkeddata.center") anchor.attr("target", "_blank");
+    var img= $("<img/>").attr("src", config.img);
+      if(config.href!="http://linkeddata.center") img.addClass("imgHeader");
+        img.appendTo(anchor);
     $("<span></span>").text(config.title).appendTo(anchor);
   };
   var items = [
-    {href: "/config",  title: "Knowledge base"},
-    {href: "/sparql",  title: "SPARQL"},
-    {href: "/ingestion",  title: "Ingestion"},
-    {href: "/queries", title: "Queries"},
+      {href:"http://linkeddata.center",img:"resources/images/linkeddataBrowserIco.png"},
+      {href: "/knowledgebase", img: "resources/images/19906034.png",  title: "Knowledge base"},
+      {href: "/sparql", img: "resources/images/19906034.png",  title: "SPARQL"},
+    {href: "/ingestion", img: "resources/images/19906034.png",  title: "Ingestion"},
+    {href: "/services", img: "resources/images/19906034.png", title: "Queries"},
   ];
   var lastIndexOf = document.URL.lastIndexOf("/");
   var basename = "";
@@ -178,6 +174,32 @@ var drawHeader = function() {
     addItem(items[i]);
   }
 };
+
+var drawFooter=function(){
+    var items = [
+        {href: "", img: "resources/images/LDC_Subscriptions.png", class:"img-responsive"},
+        {href: "/social/linkedin", img: "resources/images/linkedin.png"},
+        {href: "/social/facebook", img: "resources/images/facebook.png"},
+        {href: "/social/gplus", img: "resources/images/googleplus.png"},
+        {href: "/social/twitter", img: "resources/images/twitter.png"},
+        {href: "/social/github", img: "resources/images/github.png"}
+    ];
+
+    for(var i=0;i<items.length;++i){
+        var item;
+        (i<1) ? item = $("<li></li>").appendTo(footer_linkeddata) : item = $("<li></li>").appendTo(footer_social);
+            item.addClass("active");
+
+        var anchor = $("<a></a>").attr("href", "http://linkeddata.center"+items[i].href);
+            anchor.attr("target", "_blank");
+            anchor.appendTo(item);
+
+        var img= $("<img/>").attr("src", items[i].img);
+            if(items[i].class)img.addClass(items[i].class);
+            img.appendTo(anchor);
+    }
+}
 drawHeader();
 drawConfig();
+drawFooter();
 setDefaultParams();

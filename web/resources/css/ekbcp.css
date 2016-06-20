@@ -2,3 +2,12 @@
     max-width: 225px;
     max-height: 225px;
 }
+
+.imgHeader {
+   max-width: 40px;
+    max-height: 40px;
+}
+
+.centerListItem{
+    vertical-align:middle !important;
+}
