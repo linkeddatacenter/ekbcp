@@ -161,9 +161,9 @@ var drawHeader = function() {
   var items = [
       {href:"http://linkeddata.center",img:"resources/images/linkeddataBrowserIco.png"},
       {href: "/knowledgebase", img: "resources/images/19906034.png",  title: "Knowledge base"},
-      {href: "/sparql", img: "resources/images/19906034.png",  title: "SPARQL"},
+      {href: "index.html", img: "resources/images/19906034.png",  title: "SPARQL"},
     {href: "Ingestion.html", img: "resources/images/19906034.png",  title: "Ingestion"},
-    {href: "/services", img: "resources/images/19906034.png", title: "Queries"},
+    {href: "queries.html", img: "resources/images/19906034.png", title: "Queries"},
   ];
   var lastIndexOf = document.URL.lastIndexOf("/");
   var basename = "";
