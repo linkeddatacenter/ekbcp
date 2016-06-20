@@ -54,16 +54,7 @@ $.ajaxSetup({
 //reassign the endpoint and the Authorization header
 //everytime there is a change on one of the inputs
 var resetParams=function () {
-
-    var currentTab=yasgui.current();
-	userName = document.getElementById("ekbUser").value;
-	passWord = document.getElementById("ekbPassword").value;
-	endPoint = document.getElementById("actualEndpoint").value;
-    
-	var cookieName = "credentialCookie";
-    var cookieValue = endPoint+" "+userName+" "+passWord;
-    var cookieLife = 14400; //14400 minute = 1 day
-    writeCookie(cookieName, cookieValue, cookieLife);
+	writeCookie();
     for (var tabId in yasgui.tabs) {
        yasgui.closeTab(tabId);
     }
@@ -71,9 +62,3 @@ var resetParams=function () {
 
 };
 
-var writeCookie = function(name,value,life){
-     var d = new Date();
-     d.setTime(d.getTime() + (life*24*60*60*1000));
-     var expires = "expires="+ d.toUTCString();
-     document.cookie = name + "=" + value + "; " + expires;
-};

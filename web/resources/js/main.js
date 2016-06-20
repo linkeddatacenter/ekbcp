@@ -36,6 +36,21 @@ var readCookie = function(){
       return "null";
 }
 
+var writeCookie = function(){
+    userName = document.getElementById("ekbUser").value;
+    passWord = document.getElementById("ekbPassword").value;
+    endPoint = document.getElementById("actualEndpoint").value;
+
+    var name = "credentialCookie";
+    var value = endPoint+" "+userName+" "+passWord;
+    var life = 14400; //14400 minute = 1 day
+   
+    var d = new Date();
+    d.setTime(d.getTime() + (life*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = name + "=" + value + "; " + expires;
+};
+
 var sparql = {
   endpoint:"https://hub1.linkeddata.center/demo",
   user:"demo",
@@ -83,7 +98,6 @@ var modal = modalDiv.modal({show: false});
 
 //draw button config
 var drawConfig=function () {
-  var drawMenu=function(config){
     //create div contains the params
     var div=$("<div></div>").attr({
       class:"collapse",
@@ -113,16 +127,13 @@ var drawConfig=function () {
 
 
     var item = $("<ul></ul>").attr({
-      class:config.classUL
+      class:"nav navbar-nav navbar-right"
     }).appendTo("#nav"); //insert into div nav
     var elem = $("<li></li>").appendTo(item);
-    if (config.active) item.addClass(config.class);
     var anchor = $("<a></a>").appendTo(elem);
-    if (config.newWindow) anchor.attr("target", "_blank");
-//    $("<img/>").attr("src", config.img).appendTo(anchor);
     var button=$("<button></button>").appendTo(anchor);
+    button.addClass("btn btn-default imgHeader");
     button.attr({
-      "class":config.classButton,
       "data-toggle":"collapse",
       "data-target":"#params",
       "aria-expanded":"false"
@@ -130,9 +141,8 @@ var drawConfig=function () {
     var span=$("<span></span>").attr("aria-hidden","true").appendTo(button);
     span.addClass("glyphicon glyphicon-cog");
   };
-  var item= {classUL: "nav navbar-nav navbar-right", id: "menu", class:"active",  title: "MyAccount  ",classButton:"btn btn-sm btn-default"};
-  drawMenu(item);
-};
+
+
 
 /**
  * draw header
@@ -152,7 +162,7 @@ var drawHeader = function() {
       {href:"http://linkeddata.center",img:"resources/images/linkeddataBrowserIco.png"},
       {href: "/knowledgebase", img: "resources/images/19906034.png",  title: "Knowledge base"},
       {href: "/sparql", img: "resources/images/19906034.png",  title: "SPARQL"},
-    {href: "/ingestion", img: "resources/images/19906034.png",  title: "Ingestion"},
+    {href: "Ingestion.html", img: "resources/images/19906034.png",  title: "Ingestion"},
     {href: "/services", img: "resources/images/19906034.png", title: "Queries"},
   ];
   var lastIndexOf = document.URL.lastIndexOf("/");

@@ -44,19 +44,51 @@
                         <img
                                 alt="SPARQL endpoint"
                                 class="mediumLogo"
-                                src="resources/images/19906034.png"
+                                src="resources/images/linkeddataIco.png"
                         >
                     </div>
                     <div class="col-md-8" style="vertical-align: middle;">
-                        <h1></h1>
-                        <p></p>
+                        <h1>Ingestion Management</h1>
+                        <p>Create a new ingestion activity and inspect results.</p>
                     </div>
                 </div>
             </div>
         </div>
 		
 		<div id="pageContent" class="container-fluid">
-            
+            <h3>Request a new ingestion activity:</h3>
+            <form class="navbar-form indentedDiv ">
+                 <div class=" input-group " style="margin-top: 20px">
+                     <span class="input-group-addon">Plan</span>
+                     <select type="text" class="form-control" id="plan" id="planSelect" >
+                         <option selected="selected">Select Your Plan</option>
+                         <option class="selectPlanItem">Booting</option>
+                         <option class="selectPlanItem">Reasoning</option>
+                         <option class="selectPlanItem">Learning + Reasoning</option>
+                         <option class="selectPlanItem">Booting + Learning + Reasoning</option>
+                     </select>
+
+                 </div>
+                <button class="btn btn-info" style="margin-top: 20px" id="submitButton" onclick="submitPressed"><img src="resources/images/submit.png"/>  Submit</button>
+            </form>
+            <h3>Ingestion activities:</h3>
+            <div>
+                <table class="" >
+                    <tbody>
+                            <tr>
+                                <th>Activity Id</th>
+                                <th>Plan</th>
+                                <th>Submitted</th>
+                                <th>Started</th>
+                                <th>Ended</th>
+                                <th><Button class="btn btn-default" id="refreshButton" onclick="refreshTable"><img src="resources/images/ic_refresh_black_24dp_1x.png"></Button></th>
+                            </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="indentedDiv"> </div>
         </div>
 
         <div class="jumbotron" style="margin-top: 50px" >
@@ -68,7 +100,7 @@
 
             </ul>
             <hr>
-            <div align="middle">&copy; 2016 LinkedData.Center - <a href="https://github.com/linkeddatacenter/ekbcp" target="_blanck">fork on github</a></div>
+            <div align="middle">&copy;2016 LinkedData.Center</div>
         </div>
         </div>
 		
