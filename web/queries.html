@@ -62,7 +62,7 @@
     <div class="col-md-6">
         <div id="editDiv" class="form-group">
             <label for="selectQueryList">Predefined Queries:</label>
-            <select id="selectQueryList" class="form-control" style="width: 60%" ></select>
+            <select id="selectQueryList" class="form-control" style="width: 60%"  onchange="sendEditorContent()"></select>
         </div>
 
     </div>
@@ -94,7 +94,7 @@
             <div class="input-group">
                 <input id="inputParameters"type="text" class="form-control" placeholder="Insert params...">
       <span class="input-group-btn">
-        <button id="editBtn" type="button" class="btn btn-default"  onclick="sendEditorContent()">Edit</button>
+        <button id="editBtn" type="button" class="btn btn-default"  onclick="setQueryParams()">Edit</button>
       </span>
             </div>
 
