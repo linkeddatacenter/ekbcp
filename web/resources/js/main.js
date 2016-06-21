@@ -1,54 +1,50 @@
 // This way JS wont break on Internet Explorer when log statements
 // are still in the code.
 if (!console.log) {
-    console = {
-        log: function () {
-        }
-    };
-}
-;
+  console = {log:function(){}};
+};
 var analyticsId = 'UA-68082875-1';
 
-var setDefaultParams = function () {
-    var cookie = readCookie();
-    if (cookie != "null") {
-        var cookieValues = cookie.split(" ");
-        document.getElementById("actualEndpoint").value = cookieValues[0];
-        document.getElementById("ekbUser").value = cookieValues[1];
-        document.getElementById("ekbPassword").value = cookieValues[2];
-    } else {
-        document.getElementById("actualEndpoint").value = sparql.endpoint;
-        document.getElementById("ekbUser").value = sparql.user;
-        document.getElementById("ekbPassword").value = sparql.paswd;
-    }
+var setDefaultParams=function(){
+  var cookie = readCookie();
+  if(cookie != "null"){
+      var cookieValues = cookie.split(" ");
+      document.getElementById("actualEndpoint").value=cookieValues[0];
+      document.getElementById("ekbUser").value=cookieValues[1];
+      document.getElementById("ekbPassword").value=cookieValues[2];
+  } else {
+      document.getElementById("actualEndpoint").value=sparql.endpoint;
+      document.getElementById("ekbUser").value=sparql.user;
+      document.getElementById("ekbPassword").value=sparql.paswd;
+  }
 };
 
-var readCookie = function () {
-    var cname = "credentialCookie";
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            var cvalue = "" + c.substring(name.length, c.length);
-            return cvalue;
-        }
-    }
-    return "null";
+var readCookie = function(){
+      var cname = "credentialCookie";
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              var cvalue = ""+c.substring(name.length,c.length);
+              return cvalue;
+          }
+      }
+      return "null";
 }
 
-var writeCookie = function () {
+var writeCookie = function(){
     userName = document.getElementById("ekbUser").value;
     passWord = document.getElementById("ekbPassword").value;
     endPoint = document.getElementById("actualEndpoint").value;
 
     var name = "credentialCookie";
-    var value = endPoint + " " + userName + " " + passWord;
+    var value = endPoint+" "+userName+" "+passWord;
     var life = 14400; //14400 minute = 1 day
-
+   
     var d = new Date();
     d.setTime(d.getTime() + (life * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
@@ -183,6 +179,40 @@ var drawHeader = function () {
     } else if (hashTagIndex > 0) {
         basename = basename.substring(0, hashTagIndex - 1);
     }
+  };
+//draw menu
+var drawHeader = function() {
+  var addItem = function(config) {
+    var item = $("<li></li>").appendTo(topNavBar);
+    if (config.active) item.addClass("active");
+    var anchor = $("<a></a>").attr("href", config.href).appendTo(item);
+    if (config.newWindow||config.href=="http://linkeddata.center") anchor.attr("target", "_blank");
+      if(config.href=="http://linkeddata.center"){
+        var img=$("<img/>");
+        img.addClass("imgHeader");
+        img.attr("src", config.img);
+        img.appendTo(anchor);
+      };
+    $("<span></span>").text(config.title).appendTo(anchor);
+  };
+  var items = [
+      {href:"http://linkeddata.center",img:"resources/images/linkeddataBrowserIco.png"},
+      {href: "/knowledgebase", title: "Knowledge base"},
+      {href: "/sparql",  title: "SPARQL"},
+    {href: "Ingestion.html",  title: "Ingestion"},
+    {href: "/services", title: "Queries"},
+  ];
+  var lastIndexOf = document.URL.lastIndexOf("/");
+  var basename = "";
+  if (lastIndexOf < document.URL.length) {
+    basename = document.URL.substring(lastIndexOf + 1);
+  }
+  var hashTagIndex = basename.indexOf("#");
+  if (hashTagIndex == 0) {
+    basename == "";
+  } else if (hashTagIndex > 0) {
+    basename = basename.substring(0, hashTagIndex-1);
+  }
 
     if (basename.length == 0) basename = "index.html";
 
@@ -216,6 +246,7 @@ var drawFooter = function () {
         img.appendTo(anchor);
     }
 }
+
 drawHeader();
 drawConfig();
 drawFooter();
