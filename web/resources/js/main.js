@@ -179,48 +179,13 @@ var drawHeader = function () {
     } else if (hashTagIndex > 0) {
         basename = basename.substring(0, hashTagIndex - 1);
     }
-  };
-//draw menu
-var drawHeader = function() {
-  var addItem = function(config) {
-    var item = $("<li></li>").appendTo(topNavBar);
-    if (config.active) item.addClass("active");
-    var anchor = $("<a></a>").attr("href", config.href).appendTo(item);
-    if (config.newWindow||config.href=="http://linkeddata.center") anchor.attr("target", "_blank");
-      if(config.href=="http://linkeddata.center"){
-        var img=$("<img/>");
-        img.addClass("imgHeader");
-        img.attr("src", config.img);
-        img.appendTo(anchor);
-      };
-    $("<span></span>").text(config.title).appendTo(anchor);
-  };
-  var items = [
-      {href:"http://linkeddata.center",img:"resources/images/linkeddataBrowserIco.png"},
-      {href: "/knowledgebase", title: "Knowledge base"},
-      {href: "/sparql",  title: "SPARQL"},
-    {href: "Ingestion.html",  title: "Ingestion"},
-    {href: "/services", title: "Queries"},
-  ];
-  var lastIndexOf = document.URL.lastIndexOf("/");
-  var basename = "";
-  if (lastIndexOf < document.URL.length) {
-    basename = document.URL.substring(lastIndexOf + 1);
-  }
-  var hashTagIndex = basename.indexOf("#");
-  if (hashTagIndex == 0) {
-    basename == "";
-  } else if (hashTagIndex > 0) {
-    basename = basename.substring(0, hashTagIndex-1);
-  }
-
     if (basename.length == 0) basename = "index.html";
 
     for (var i = 0; i < items.length; i++) {
         if (basename == items[i].href) items[i].active = true;
         addItem(items[i]);
     }
-};
+  };
 
 var drawFooter = function () {
     var items = [
