@@ -46,41 +46,43 @@ var writeCookie = function(){
     var life = 14400; //14400 minute = 1 day
    
     var d = new Date();
-    d.setTime(d.getTime() + (life*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
+    d.setTime(d.getTime() + (life * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
     document.cookie = name + "=" + value + "; " + expires;
 };
 
 var sparql = {
-  endpoint:"https://hub1.linkeddata.center/demo",
-  user:"demo",
-  paswd:"demo",
+    endpoint: "https://hub1.linkeddata.center/demo",
+    user: "demo",
+    paswd: "demo",
 };
 
 // Init loader.
 $.ajaxSetup({
-  beforeSend: function() {
-    $('#loader').show();
-  },
-  complete: function(){
-    $('#loader').hide();
-    if (goToHash) goToHash();
-  },
-  success: function() {},
-  url : sparql.url,
+    beforeSend: function () {
+        $('#loader').show();
+    },
+    complete: function () {
+        $('#loader').hide();
+        if (goToHash) goToHash();
+    },
+    success: function () {
+    },
+    url: sparql.url,
 });
 
 /**
  * helpers
  */
 if (typeof d3 != 'undefined') {
-  var formatPercentage = d3.format("%");
-  var formatThousands = d3.format(",g");
-  var formatLargeShortForm = d3.format(".2s");
-  var formatNumber = d3.format(",n");
+    var formatPercentage = d3.format("%");
+    var formatThousands = d3.format(",g");
+    var formatLargeShortForm = d3.format(".2s");
+    var formatNumber = d3.format(",n");
 }
 
-$(document).ready(function(){});
+$(document).ready(function () {
+});
 
 var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hidden='true'></div>")
     .html('<div class="modal-dialog modal-lg ">' +
@@ -97,97 +99,97 @@ var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hid
 var modal = modalDiv.modal({show: false});
 
 //draw button config
-var drawConfig=function () {
+var drawConfig = function () {
     //create div contains the params
-    var div=$("<div></div>").attr({
-      class:"collapse",
-      id:"params",
-      "aria-expanded":"true",
-      style:"height:1px"
+    var div = $("<div></div>").attr({
+        class: "collapse",
+        id: "params",
+        "aria-expanded": "true",
+        style: "height:1px"
     }).appendTo(container); //insert into div container
 
-    document.getElementById("params").innerHTML+="" +
+    document.getElementById("params").innerHTML += "" +
         "\<form class=\"navbar-form navbar-right\" role=\"search\"\>" +
-          "<div class=\"form-group\">" +
-            "<div class=\"input-group\">" +
-              "<span class=\"input-group-addon\">Endpoint</span>" +
-              "<input type=\"text\" class=\"form-control\" id=\"actualEndpoint\">" +
-            "</div>" +
-            "<div class=\"input-group\">" +
-              "<span class=\"input-group-addon\">Username</span>" +
-              "<input type=\"text\" class=\"form-control\" id=\"ekbUser\">" +
-            "</div>" +
-            "<div class=\"input-group\">" +
-              "<span class=\"input-group-addon\">Password</span>" +
-              "<input type=\"password\" class=\"form-control\" id=\"ekbPassword\">" +
-            "</div>" +
-          "</div>" +
-          "<button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\">Set Credential</button>" +
+        "<div class=\"form-group\">" +
+        "<div class=\"input-group\">" +
+        "<span class=\"input-group-addon\">Endpoint</span>" +
+        "<input type=\"text\" class=\"form-control\" id=\"actualEndpoint\">" +
+        "</div>" +
+        "<div class=\"input-group\">" +
+        "<span class=\"input-group-addon\">Username</span>" +
+        "<input type=\"text\" class=\"form-control\" id=\"ekbUser\">" +
+        "</div>" +
+        "<div class=\"input-group\">" +
+        "<span class=\"input-group-addon\">Password</span>" +
+        "<input type=\"password\" class=\"form-control\" id=\"ekbPassword\">" +
+        "</div>" +
+        "</div>" +
+        "<button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\">Set Credential</button>" +
         "</form>";
 
 
     var item = $("<ul></ul>").attr({
-      class:"nav navbar-nav navbar-right"
+        class: "nav navbar-nav navbar-right"
     }).appendTo("#nav"); //insert into div nav
     var elem = $("<li></li>").appendTo(item);
     var anchor = $("<a></a>").appendTo(elem);
-    var button=$("<button></button>").appendTo(anchor);
-    button.addClass("btn btn-default imgHeader");
+    var button = $("<button></button>").appendTo(anchor);
+    button.addClass("btn btn-default");
     button.attr({
-      "data-toggle":"collapse",
-      "data-target":"#params",
-      "aria-expanded":"false"
+        "data-toggle": "collapse",
+        "data-target": "#params",
+        "aria-expanded": "false"
     });
-    var span=$("<span></span>").attr("aria-hidden","true").appendTo(button);
+    var span = $("<span></span>").attr("aria-hidden", "true").appendTo(button);
     span.addClass("glyphicon glyphicon-cog");
-  };
-
+};
 
 
 /**
  * draw header
  */
-var drawHeader = function() {
-  var addItem = function(config) {
-    var item = $("<li></li>").appendTo(topNavBar);
-    if (config.active) item.addClass("active");
-    var anchor = $("<a></a>").attr("href", config.href).appendTo(item);
-    if (config.newWindow||config.href=="http://linkeddata.center") anchor.attr("target", "_blank");
-    var img= $("<img/>").attr("src", config.img);
-      if(config.href!="http://linkeddata.center") img.addClass("imgHeader");
-        img.appendTo(anchor);
-    $("<span></span>").text(config.title).appendTo(anchor);
-  };
-  var items = [
-      {href:"http://linkeddata.center",img:"resources/images/linkeddataBrowserIco.png"},
-      {href: "/knowledgebase", img: "resources/images/19906034.png",  title: "Knowledge base"},
-      {href: "index.html", img: "resources/images/19906034.png",  title: "SPARQL"},
-	  {href: "ingestion.html", img: "resources/images/19906034.png",  title: "Ingestion"},
-      {href: "/services", img: "resources/images/19906034.png", title: "Queries"},
-  ];
-  var lastIndexOf = document.URL.lastIndexOf("/");
-  var basename = "";
-  if (lastIndexOf < document.URL.length) {
-    basename = document.URL.substring(lastIndexOf + 1);
-  }
-  var hashTagIndex = basename.indexOf("#");
-  if (hashTagIndex == 0) {
-    basename == "";
-  } else if (hashTagIndex > 0) {
-    basename = basename.substring(0, hashTagIndex-1);
-  }
-
-  if (basename.length == 0) basename = "index.html";
-
-  for (var i = 0; i < items.length; i++) {
-    if (basename == items[i].href) items[i].active = true;
-    addItem(items[i]);
-  }
-};
-
-var drawFooter=function(){
+var drawHeader = function () {
+    var addItem = function (config) {
+        var item = $("<li></li>").appendTo(topNavBar);
+        if (config.active) item.addClass("active");
+        var anchor = $("<a></a>").attr("href", config.href).appendTo(item);
+        if (config.newWindow) anchor.attr("target", "_blank");
+        if (config.href == "http://linkeddata.center") {
+            var img = $("<img/>").attr("src", config.img);
+            img.addClass("imgHeaderIco");
+            img.appendTo(anchor);
+        }
+        $("<span></span>").text(config.title).appendTo(anchor);
+    };
     var items = [
-        {href: "", img: "resources/images/LDC_Subscriptions.png", class:"img-responsive"},
+        {href: "http://linkeddata.center", img: "resources/images/linkeddataBrowserIco.png"},
+        {href: "/knowledgebase", title: "Knowledge base"},
+        {href: "index.html", title: "SPARQL"},
+        {href: "ingestion.html",title: "Ingestion"},
+        {href: "queries.html", title: "Queries"},
+    ];
+    var lastIndexOf = document.URL.lastIndexOf("/");
+    var basename = "";
+    if (lastIndexOf < document.URL.length) {
+        basename = document.URL.substring(lastIndexOf + 1);
+    }
+    var hashTagIndex = basename.indexOf("#");
+    if (hashTagIndex == 0) {
+        basename == "";
+    } else if (hashTagIndex > 0) {
+        basename = basename.substring(0, hashTagIndex - 1);
+    }
+    if (basename.length == 0) basename = "index.html";
+
+    for (var i = 0; i < items.length; i++) {
+        if (basename == items[i].href) items[i].active = true;
+        addItem(items[i]);
+    }
+  };
+
+var drawFooter = function () {
+    var items = [
+        {href: "", img: "resources/images/LDC_Subscriptions.png", class: "img-responsive"},
         {href: "/social/linkedin", img: "resources/images/linkedin.png"},
         {href: "/social/facebook", img: "resources/images/facebook.png"},
         {href: "/social/gplus", img: "resources/images/googleplus.png"},
@@ -195,20 +197,21 @@ var drawFooter=function(){
         {href: "/social/github", img: "resources/images/github.png"}
     ];
 
-    for(var i=0;i<items.length;++i){
+    for (var i = 0; i < items.length; ++i) {
         var item;
-        (i<1) ? item = $("<li></li>").appendTo(footer_linkeddata) : item = $("<li></li>").appendTo(footer_social);
-            item.addClass("active");
+        (i < 1) ? item = $("<li></li>").appendTo(footer_linkeddata) : item = $("<li></li>").appendTo(footer_social);
+        item.addClass("active");
 
-        var anchor = $("<a></a>").attr("href", "http://linkeddata.center"+items[i].href);
-            anchor.attr("target", "_blank");
-            anchor.appendTo(item);
+        var anchor = $("<a></a>").attr("href", "http://linkeddata.center" + items[i].href);
+        anchor.attr("target", "_blank");
+        anchor.appendTo(item);
 
-        var img= $("<img/>").attr("src", items[i].img);
-            if(items[i].class)img.addClass(items[i].class);
-            img.appendTo(anchor);
+        var img = $("<img/>").attr("src", items[i].img);
+        if (items[i].class)img.addClass(items[i].class);
+        img.appendTo(anchor);
     }
 }
+
 drawHeader();
 drawConfig();
 drawFooter();
