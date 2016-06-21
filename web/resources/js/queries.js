@@ -13,7 +13,7 @@ var csvDescizione= [
     {id:1,descrizione:"PREFIX foaf: <http://xmlns.com/foaf/0.1/>\nSELECT ?craft ?homepage\n{\n?craft foaf:name \"Apollo 7\" .\n?craft foaf:homepage ?homepage\n}"},
     {id:2,descrizione:"PREFIX foaf:  <http://xmlns.com/foaf/0.1/>\nPREFIX card: <http://www.w3.org/People/Berners-Lee/card#>\nSELECT ?homepage\n FROM <http://www.w3.org/People/Berners-Lee/card>\nWHERE {\ncard:i foaf:knows ?known .\n?known foaf:homepage ?homepage .\n}"},
     {id:3,descrizione:"SELECT DISTINCT ?concept\nWHERE {\n?s a ?concept .\n}"},
-    {id:4,descrizione: "PREFIX space: <http://purl.org/net/schemas/space/>\nSELECT ?craft\n{\n ?craft a space:Spacecraft\n}"}
+    {id:4,descrizione:"PREFIX space: <http://purl.org/net/schemas/space/>\nSELECT ?craft\n{\n ?craft a space:Spacecraft\n}"}
 ];
 
 //var id= inserire qui dentro l'id della query selezionata nello spinner
@@ -56,8 +56,13 @@ $(document).ready(function() {
 });
 
 var sendEditorContent = function() {
-    var x = yasqe.getValue();
-    endPoint += "/query?id=[id]&view="+x;
+    var id = document.getElementById("selectQueryList").value;
+    var description = getDescriptionFromId(id);
+    if(description != "null"){
+        yasqe.setValue(description);
+    } else {
+        yasqe.setValue("Error.")
+    }
 }
 
 var createQueryList = function () {
@@ -74,4 +79,20 @@ var createQueryList = function () {
         option.text = csv[i].nome;
         selectQueryList.appendChild(option);
     }
+}
+
+var getDescriptionFromId = function(id){
+    for (var i = 0; i < csvDescizione.length; i++) {
+        if(csvDescizione[i].id == id){
+            var descr = csvDescizione[i].descrizione;
+            return descr;
+        }
+    }
+    return "null";
+}
+
+var setQueryParams = function () {
+    var params = document.getElementById("inputParameters").value;
+    var old = yasqe.getValue();
+    yasqe.setValue(old + "\n" + params);
 }
