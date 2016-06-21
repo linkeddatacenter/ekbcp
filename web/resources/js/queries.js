@@ -1,4 +1,22 @@
+//csv che era nel formato: id,nome,id,nome,id,nome...
+//viene parsato in un array di oggetti ognuno dei quali contiene id e nome
+var csv= [
+    {id:1,nome:"Automobili"},
+    {id:2,nome:"Nazioni"},
+    {id:3,nome:"Nascite"},
+    {id:4,nome: "Case costruite nel 2003"}
+];
 
+//csv che era nel formato: id,descrizione,id,descrizione,id,descrizione...
+//viene parsato in un array di oggetti ognuno dei quali contiene id e descrizione
+var csvDescizione= [
+    {id:1,descrizione:"PREFIX foaf: <http://xmlns.com/foaf/0.1/>\nSELECT ?craft ?homepage\n{\n?craft foaf:name \"Apollo 7\" .\n?craft foaf:homepage ?homepage\n}"},
+    {id:2,descrizione:"PREFIX foaf:  <http://xmlns.com/foaf/0.1/>\nPREFIX card: <http://www.w3.org/People/Berners-Lee/card#>\nSELECT ?homepage\n FROM <http://www.w3.org/People/Berners-Lee/card>\nWHERE {\ncard:i foaf:knows ?known .\n?known foaf:homepage ?homepage .\n}"},
+    {id:3,descrizione:"SELECT DISTINCT ?concept\nWHERE {\n?s a ?concept .\n}"},
+    {id:4,descrizione: "PREFIX space: <http://purl.org/net/schemas/space/>\nSELECT ?craft\n{\n ?craft a space:Spacecraft\n}"}
+];
+
+//var id= inserire qui dentro l'id della query selezionata nello spinner
 var yasqe;
 $(document).ready(function() {
     //There is some text on the HTML which we'll need to fill dynamically from javascript:
