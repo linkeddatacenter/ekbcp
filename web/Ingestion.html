@@ -19,6 +19,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <link rel="stylesheet" href="/bower_components/github-fork-ribbon-css/gh-fork-ribbon.ie.css">
         <![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
     </head>
 	<body>
         <div id="pageHeader" class="navbar navbar-default bs-docs-nav">
@@ -57,60 +60,69 @@
 		
 		<div id="pageContent" class="container-fluid">
             <h3>Request a new ingestion activity:</h3>
-            <form class="navbar-form indentedDiv ">
-                 <div class=" input-group " style="margin-top: 20px">
-                     <span class="input-group-addon">Plan</span>
-                     <select type="text" class="form-control" id="plan" id="planSelect" >
-                         <option selected="selected">Select Your Plan</option>
-                         <option class="selectPlanItem">Booting</option>
-                         <option class="selectPlanItem">Reasoning</option>
-                         <option class="selectPlanItem">Learning + Reasoning</option>
-                         <option class="selectPlanItem">Booting + Learning + Reasoning</option>
-                     </select>
+			<div>
+				<form class="navbar-form indentedDiv" method="post">
+					<div class="input-group" style="margin-top: 20px">
+						<span class="input-group-addon">Plan</span>
+						<select type="text" class="form-control" id="plan">
+							<option value="b" class="selectPlanItem">Booting</option>
+							<option value="r" class="selectPlanItem">Reasoning</option>
+							<option value="lr" class="selectPlanItem" selected="selected">Learning + Reasoning</option>
+							<option value="blr" class="selectPlanItem">Booting + Learning + Reasoning</option>
+						</select>
+					</div>
+					<button class="btn btn-info" style="margin-top: 20px" onclick="submitPressed()"><img src="resources/images/submit.png"/>  Submit</button>
+				</form>
+				
+			</div>
 
-                 </div>
-                <button class="btn btn-info" style="margin-top: 20px" id="submitButton" onclick="submitPressed"><img src="resources/images/submit.png"/>  Submit</button>
-            </form>
             <h3>Ingestion activities:</h3>
-            <div>
-                <table class="" >
-                    <tbody>
+			
+			<div id="myDynamicTable">
+				<div>
+					<table class="" id="ingestionTable" border="1" cellpadding="3">
+						<tbody>
                             <tr>
-                                <th>Activity Id</th>
-                                <th>Plan</th>
-                                <th>Submitted</th>
-                                <th>Started</th>
-                                <th>Ended</th>
-                                <th><Button class="btn btn-default" id="refreshButton" onclick="refreshTable"><img src="resources/images/ic_refresh_black_24dp_1x.png"></Button></th>
+                                <th width="10%">Activity Id</th>
+                                <th width="15%">Plan</th>
+                                <th width="24%">Submitted</th>
+                                <th width="24%">Started</th>
+                                <th width="24%">Ended</th>
+                                <th width="3%"><Button class="btn btn-default" id="refreshButton" onclick="refreshTable()"><img src="resources/images/ic_refresh_black_24dp_1x.png"></Button></th>
                             </tr>
+						</tbody>
+					</table>
+				</div>
 
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="indentedDiv"> </div>
-        </div>
-
+				<div class="indentedDiv"> </div>
+			</div>
+		</div>
+		
         <div class="jumbotron" style="margin-top: 50px" >
             <ul class="list-inline" align="middle" id="footer_linkeddata">
-
             </ul>
             <hr>
+			
             <ul class="list-inline " align="middle" id="footer_social">
-
             </ul>
             <hr>
+			
             <div align="middle">&copy;2016 LinkedData.Center</div>
-        </div>
         </div>
 		
         <!--jquery js-->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		
+		<!--this is the old version-->
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+		
         <!--bootstrap js-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <!--main js load menu and menage default data-->
         <script src="resources/js/main.js"></script>
-        <<script>
+        <!--local ingestion js-->
+        <script src="resources/js/ingestion.js"></script>
+        <script>
          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -119,6 +131,6 @@
          ga('create', analyticsId, 'auto');
          ga('send', 'pageview');
 
-        </script>>
+        </script>
     </body>
 </html>
