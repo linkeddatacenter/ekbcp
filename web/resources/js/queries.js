@@ -1,3 +1,13 @@
+//csv che era nel formato: id,nome,id,nome,id,nome...
+//viene parsato in un array di oggetti ognuno dei quali contiene id e nome
+var csv= [
+    {id:1,nome:Automobili},
+    {id:2,nome:Nazioni},
+    {id:3,nome:Nascite},
+    {id:4,nome: "Case costruite nel 2003"}
+];
+
+//var id= inserire qui dentro l'id della query selezionata nello spinner 
 
 var yasqe;
 $(document).ready(function() {
@@ -12,7 +22,7 @@ $(document).ready(function() {
     //if the endpoint insert is equal to the default
     //it insert the /sparql for go to the database
     if (endPoint == "https://hub1.linkeddata.center/demo") {
-        endPoint += "/sparql";
+        endPoint += "/queries";
     }
     YASQE.defaults.sparql.endpoint = endPoint;
     //create a string coded https://it.wikipedia.org/wiki/Basic_access_authentication
