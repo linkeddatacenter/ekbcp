@@ -16,7 +16,6 @@ $(document).ready(function() {
 		cache:false,
 		success: function(data ){
 				var tableRows=CSV.parse(data);
-
 				for(var i in tableRows ){
 					var row=tableRows[i];
 					document.getElementById("ingestionTable").innerHTML+=

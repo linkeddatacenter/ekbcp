@@ -16,7 +16,7 @@ var csvDescizione= [
     {id:4,descrizione:"PREFIX space: <http://purl.org/net/schemas/space/>\nSELECT ?craft\n{\n ?craft a space:Spacecraft\n}"}
 ];
 
-//var id= inserire qui dentro l'id della query selezionata nello spinner
+var id;
 var yasqe;
 $(document).ready(function() {
     //There is some text on the HTML which we'll need to fill dynamically from javascript:
@@ -55,40 +55,74 @@ $(document).ready(function() {
     });
 });
 
-var sendEditorContent = function() {
-    var id = document.getElementById("selectQueryList").value;
-    var description = getDescriptionFromId(id);
-    if(description != "null"){
-        yasqe.setValue(description);
-    } else {
-        yasqe.setValue("Error.")
-    }
-}
-
 var createQueryList = function () {
     var editDiv = document.getElementById("editDiv");
     var selectQueryList = document.getElementById("selectQueryList");
+    $.ajax({
+        type: 'GET',
+        url: "../doc/tests/queryList.txt",
+        headers: {
+            Accept : "text/csv; charset=utf-8",
+            Authorization: 'Basic ' + btoa(userName + ":" + passWord)
+        },
+        cache:false,
+        success: function(data){
+            var queryList=CSV.parse(data);
+            for(var i in queryList ){
+                var row=queryList[i];
+                var option = document.createElement("option");
+                option.value = row[0];
+                option.text = row[1];
+                selectQueryList.appendChild(option);
+
+            }
+            id = selectQueryList.value;
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(""+xhr.status +thrownError);
+        }
+    });
     //selectQueryList.id = "selectQueryList";
     //selectQueryList.class = "form-control";
     //selectQueryList.onchange = "querySelected()";
     //editDiv.appendChild(selectQueryList);
 
-    for (var i = 0; i < csv.length; i++) {
-        var option = document.createElement("option");
-        option.value = csv[i].id;
-        option.text = csv[i].nome;
-        selectQueryList.appendChild(option);
-    }
+
 }
 
-var getDescriptionFromId = function(id){
-    for (var i = 0; i < csvDescizione.length; i++) {
-        if(csvDescizione[i].id == id){
-            var descr = csvDescizione[i].descrizione;
-            return descr;
+var getDescriptionFromId = function(){
+    // for (var i = 0; i < csvDescizione.length; i++) {
+    //     if(csvDescizione[i].id == id){
+    //         var descr = csvDescizione[i].descrizione;
+    //         return descr;
+    //     }
+    // }
+    // return "null";
+    id = document.getElementById("selectQueryList").value;
+    var descr;
+    $.ajax({
+        type: 'GET',
+        url: "../doc/tests/queryDescription.txt",
+        headers: {
+            Accept : "text/csv; charset=utf-8",
+            Authorization: 'Basic ' + btoa(userName + ":" + passWord)
+        },
+        cache:false,
+        success: function(data){
+            var queryList=CSV.parse(data);
+            for(var i in queryList ) {
+                var row = queryList[i];
+                if (row[0] == id) {
+                    descr = row[1];
+                    yasqe.setValue(descr);
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(""+xhr.status +thrownError);
         }
-    }
-    return "null";
+
+    });
 }
 
 var setQueryParams = function () {
@@ -102,6 +136,7 @@ var resetParams = function() {
     writeCookie();
     location.reload(true);
 }
+
 var sendToEditorSparql=function(){
     //build an http get to request the list of ingestion in CSV format
     $.ajax({

@@ -65,7 +65,7 @@
             <div id="editDiv" class="form-group">
                 <label for="selectQueryList">Predefined Queries:</label>
                 <select id="selectQueryList" class="form-control" style="width: 60%"
-                        onchange="sendEditorContent()"></select>
+                        onchange="getDescriptionFromId()"></select>
             </div>
 
         </div>
@@ -130,6 +130,8 @@
         crossorigin="anonymous"></script>
 <!--YASQE js-->
 <script src='http://cdn.jsdelivr.net/yasqe/2.10.0/yasqe.bundled.min.js'></script>
+
+<script src="resources/js/csv.js"></script>
 <!--main js load menu and menage default data-->
 <script src="resources/js/main.js?v=2"></script>
 <!--local queries js-->
