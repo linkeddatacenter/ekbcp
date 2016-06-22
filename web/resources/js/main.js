@@ -64,7 +64,7 @@ $.ajaxSetup({
     },
     complete: function () {
         $('#loader').hide();
-        if (goToHash) goToHash();
+        //if (goToHash) goToHash();
     },
     success: function () {
     },

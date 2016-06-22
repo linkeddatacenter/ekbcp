@@ -96,3 +96,27 @@ var setQueryParams = function () {
     var old = yasqe.getValue();
     yasqe.setValue(old + "\n" + params);
 }
+
+//function called when pressed set credential
+var resetParams = function() {
+    writeCookie();
+    location.reload(true);
+}
+var sendToEditorSparql=function(){
+    //build an http get to request the list of ingestion in CSV format
+    $.ajax({
+        type: 'GET',
+        //url: endPoint+"/queries?id=$id&view=source",  //ricordati di mettere dentro la var id globale l'id della query selezionata nello spinner
+        url: "../doc/tests/invioQuerySPARQL.txt",
+        headers: {
+            Authorization: 'Basic ' + btoa(userName + ":" + passWord)
+        },
+        cache:false,
+        success: function(data ){
+            window.open("index.html?query="+data,"_self")
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(""+xhr.status +thrownError);
+        }
+    });
+}
