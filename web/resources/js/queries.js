@@ -116,7 +116,15 @@ var getDescriptionFromId = function(){
                 var row = queryList[i];
                 if (row[0] == id) {
                     descr = row[1];
-                    yasqe.setValue(descr);
+                    var x = descr.split("£");
+                    for(var j = 0; j < x.length; ++j){
+                        if(j==0){
+                            yasqe.setValue(x[j]);
+                        } else {
+                            var old = yasqe.getValue();
+                            yasqe.setValue(old + "\n" + x[j]);
+                        }
+                    }
                 }
             }
         },
@@ -143,7 +151,7 @@ var sendToEditorSparql=function(){
     //build an http get to request the list of ingestion in CSV format
     $.ajax({
         type: 'GET',
-        //url: endPoint+"/queries?id=$id&view=source",  //ricordati di mettere dentro la var id globale l'id della query selezionata nello spinner
+        //url: endPoint+"/queries?id=$"+id+"&view=source",  //ricordati di mettere dentro la var id globale l'id della query selezionata nello spinner
         url: "../doc/tests/invioQuerySPARQL.txt",
         headers: {
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
