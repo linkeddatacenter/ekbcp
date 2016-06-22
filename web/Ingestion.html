@@ -19,9 +19,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <link rel="stylesheet" href="/bower_components/github-fork-ribbon-css/gh-fork-ribbon.ie.css">
         <![endif]-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
     </head>
 	<body>
         <div id="pageHeader" class="navbar navbar-default bs-docs-nav">
@@ -65,19 +62,19 @@
 					<div class="input-group" style="margin-top: 20px">
 						<span class="input-group-addon">Plan</span>
 						<select type="text" class="form-control" id="plan">
-							<option value="b" class="selectPlanItem">Booting</option>
-							<option value="r" class="selectPlanItem">Reasoning</option>
-							<option value="lr" class="selectPlanItem" selected="selected">Learning + Reasoning</option>
-							<option value="blr" class="selectPlanItem">Booting + Learning + Reasoning</option>
+							<option  class="selectPlanItem">Booting</option>
+							<option  class="selectPlanItem">Reasoning</option>
+							<option  class="selectPlanItem" selected="selected">Learning + Reasoning</option>
+							<option  class="selectPlanItem">Booting + Learning + Reasoning</option>
 						</select>
 					</div>
 					<button class="btn btn-info" style="margin-top: 20px" onclick="submitPressed()"><img src="resources/images/submit.png"/>  Submit</button>
 				</form>
-				
+
 			</div>
 
             <h3>Ingestion activities:</h3>
-			
+
 			<div id="myDynamicTable">
 				<div>
 					<table class="" id="ingestionTable" border="1" cellpadding="3">
@@ -88,7 +85,7 @@
                                 <th width="24%">Submitted</th>
                                 <th width="24%">Started</th>
                                 <th width="24%">Ended</th>
-                                <th width="3%"><Button class="btn btn-default" id="refreshButton" onclick="refreshTable()"><img src="resources/images/ic_refresh_black_24dp_1x.png"></Button></th>
+                                <th width="3%"><Button class="btn btn-info" id="refreshButton" onclick="refreshTable()"><img src="resources/images/ic_refresh_black_24dp_1x.png"></Button></th>
                             </tr>
 						</tbody>
 					</table>
@@ -97,12 +94,12 @@
 				<div class="indentedDiv"> </div>
 			</div>
 		</div>
-		
+
         <div class="jumbotron" style="margin-top: 50px" >
             <ul class="list-inline" align="middle" id="footer_linkeddata">
             </ul>
             <hr>
-			
+
             <ul class="list-inline " align="middle" id="footer_social">
             </ul>
             <hr>
@@ -110,16 +107,14 @@
         </div>
 		
         <!--jquery js-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		
-		<!--this is the old version-->
-        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-		
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <!--bootstrap js-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <!--main js load menu and menage default data-->
         <script src="resources/js/main.js"></script>
 
+		<!-- CSV parser-->
+        <script src="resources/js/csv.js"></script>
         <!-- local ingestion.js-->
         <script src="resources/js/ingestion.js"></script>
         <script>
