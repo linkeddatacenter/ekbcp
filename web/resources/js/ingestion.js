@@ -35,20 +35,7 @@ $(document).ready(function() {
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			alert(""+xhr.status + " " + thrownError);
-			//test the dinamic assign of color for a single row
-			// document.getElementById("ingestionTable").innerHTML+=
-                        // "<tr class=\"danger\">" +
-                            // "<td>"+'Error'+"</td>" +  
-                        // "</tr>" +
-                        // "<tr class=\"success\">" +
-                            // "<td>"+'Error'+"</td>" +  
-                        // "</tr>" +
-                        // "<tr class=\"active\">" +
-                            // "<td>"+'Error'+"</td>" +  
-                        // "</tr>" +
-                        // "<tr class=\"warning\">" +
-                            // "<td>"+'Error'+"</td>" + 
-                        // "</tr>";
+			
 		}
 	});
 
