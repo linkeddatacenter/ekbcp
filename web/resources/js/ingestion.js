@@ -27,7 +27,7 @@ $(document).ready(function() {
                             "<td>"+row[3]+"</td>" +
                             "<td>"+row[4]+"</td>" +
                             "<td>" +
-                                "<a href='"+endPoint+"/query/"+row[0]+"' target='_blank'><button><b>i</b></button></a>"//ingestion report link
+                                "<a href='"+endPoint+"/activity/"+row[0]+"' target='_blank'><button><b>i</b></button></a>"//ingestion report link
                             "</td>" +
                         "</tr>";
 				}
