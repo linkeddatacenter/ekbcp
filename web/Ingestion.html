@@ -68,7 +68,10 @@
 							<option  class="selectPlanItem">Booting + Learning + Reasoning</option>
 						</select>
 					</div>
-					<button class="btn btn-info" style="margin-top: 20px" onclick="submitPressed()"><img src="resources/images/submit.png"/>  Submit</button>
+					<button class="btn btn-info glyphicon glyphicon-send" style="margin-top: 20px" onclick="submitPressed()">
+						<!-- <img src="resources/images/submit.png"/> -->
+						<font face="arial" size="3">Submit</font>
+					</button>
 				</form>
 
 			</div>
@@ -77,17 +80,19 @@
 
 			<div id="myDynamicTable">
 				<div>
-					<table class="" id="ingestionTable" border="1" cellpadding="3">
-						<tbody>
-                            <tr>
+					<table class="table table-hover" id="ingestionTable" cellpadding="3">
+						<thead>
+                            <tr class="info">
                                 <th width="10%">Activity Id</th>
                                 <th width="15%">Plan</th>
                                 <th width="24%">Submitted</th>
                                 <th width="24%">Started</th>
                                 <th width="24%">Ended</th>
-                                <th width="3%"><Button class="btn btn-info" id="refreshButton" onclick="refreshTable()"><img src="resources/images/ic_refresh_black_24dp_1x.png"></Button></th>
-                            </tr>
-						</tbody>
+                                <th width="3%"><Button class="btn btn-info glyphicon glyphicon-refresh" id="refreshButton" onclick="refreshTable()">
+									<!-- <img src="resources/images/ic_refresh_black_24dp_1x.png"> -->
+								</Button></th>
+							</tr>
+						</thead>
 					</table>
 				</div>
 

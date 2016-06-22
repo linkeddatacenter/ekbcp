@@ -27,13 +27,28 @@ $(document).ready(function() {
                             "<td>"+row[3]+"</td>" +
                             "<td>"+row[4]+"</td>" +
                             "<td>" +
-                                "<a href='"+endPoint+"/activity/"+row[0]+"' target='_blank'><button><b>i</b></button></a>"//ingestion report link
+                                "<a href='"+endPoint+"/activity/"+row[0]+"' target='_blank'><button class=\"glyphicon glyphicon-italic\"><b></b></button></a>"//ingestion report link
                             "</td>" +
                         "</tr>";
+						//decide to use the I or the Link symbol (glyphicon glyphicon-link)
 				}
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
-			alert(""+xhr.status +thrownError);
+			alert(""+xhr.status + " " + thrownError);
+			//test the dinamic assign of color for a single row
+			// document.getElementById("ingestionTable").innerHTML+=
+                        // "<tr class=\"danger\">" +
+                            // "<td>"+'Error'+"</td>" +  
+                        // "</tr>" +
+                        // "<tr class=\"success\">" +
+                            // "<td>"+'Error'+"</td>" +  
+                        // "</tr>" +
+                        // "<tr class=\"active\">" +
+                            // "<td>"+'Error'+"</td>" +  
+                        // "</tr>" +
+                        // "<tr class=\"warning\">" +
+                            // "<td>"+'Error'+"</td>" + 
+                        // "</tr>";
 		}
 	});
 
@@ -65,7 +80,7 @@ var submitPressed = function() {
             location.reload(true);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert(""+xhr.status +" "+thrownError );
+            alert(""+xhr.status + " " + thrownError);
         }
 	});
 }
