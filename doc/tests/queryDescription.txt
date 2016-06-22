@@ -1,4 +1,4 @@
-1,PREFIX foaf: "<http://xmlns.com/foaf/0.1/>"+\n"SELECT ?craft ?homepage"+\n{\n?craft foaf:name \"Apollo 7\" .\n?craft foaf:homepage ?homepage\n}
-2,PREFIX foaf:  <http://xmlns.com/foaf/0.1/>\nPREFIX card: <http://www.w3.org/People/Berners-Lee/card#>\nSELECT ?homepage\n FROM <http://www.w3.org/People/Berners-Lee/card>\nWHERE {\ncard:i foaf:knows ?known .\n?known foaf:homepage ?homepage .\n}
-3,SELECT DISTINCT ?concept\nWHERE {\n?s a ?concept .\n}
-4,PREFIX space: <http://purl.org/net/schemas/space/>\nSELECT ?craft\n{\n ?craft a space:Spacecraft\n}
+1,PREFIX foaf: <http://xmlns.com/foaf/0.1/> SELECT ?craft ?homepage { ?craft foaf:name \"Apollo 7\" . ?craft foaf:homepage ?homepage }
+2,PREFIX foaf:  <http://xmlns.com/foaf/0.1/> PREFIX card: <http://www.w3.org/People/Berners-Lee/card#> SELECT ?homepage FROM <http://www.w3.org/People/Berners-Lee/card> WHERE { card:i foaf:knows ?known . ?known foaf:homepage ?homepage . }
+3,SELECT DISTINCT ?concept WHERE { ?s a ?concept . }
+4,PREFIX space: <http://purl.org/net/schemas/space/> SELECT ?craft { ?craft a space:Spacecraft }

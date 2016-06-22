@@ -60,6 +60,7 @@ var createQueryList = function () {
     var selectQueryList = document.getElementById("selectQueryList");
     $.ajax({
         type: 'GET',
+        //url: endPoint+"/queries",
         url: "../doc/tests/queryList.txt",
         headers: {
             Accept : "text/csv; charset=utf-8",
@@ -102,13 +103,14 @@ var getDescriptionFromId = function(){
     var descr;
     $.ajax({
         type: 'GET',
+        //url: endPoint+"/queries?id=$id&view=source",
         url: "../doc/tests/queryDescription.txt",
         headers: {
             Accept : "text/csv; charset=utf-8",
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         cache:false,
-        success: function(data){
+        success: function(data){ //non serve fare il parser perchè chiamiamo solo una query alla volta attraverso l'id alle api
             var queryList=CSV.parse(data);
             for(var i in queryList ) {
                 var row = queryList[i];
