@@ -1,21 +1,3 @@
-//csv che era nel formato: id,nome,id,nome,id,nome...
-//viene parsato in un array di oggetti ognuno dei quali contiene id e nome
-var csv= [
-    {id:1,nome:"Automobili"},
-    {id:2,nome:"Nazioni"},
-    {id:3,nome:"Nascite"},
-    {id:4,nome: "Case costruite nel 2003"}
-];
-
-//csv che era nel formato: id,descrizione,id,descrizione,id,descrizione...
-//viene parsato in un array di oggetti ognuno dei quali contiene id e descrizione
-var csvDescizione= [
-    {id:1,descrizione:"PREFIX foaf: <http://xmlns.com/foaf/0.1/>\nSELECT ?craft ?homepage\n{\n?craft foaf:name \"Apollo 7\" .\n?craft foaf:homepage ?homepage\n}"},
-    {id:2,descrizione:"PREFIX foaf:  <http://xmlns.com/foaf/0.1/>\nPREFIX card: <http://www.w3.org/People/Berners-Lee/card#>\nSELECT ?homepage\n FROM <http://www.w3.org/People/Berners-Lee/card>\nWHERE {\ncard:i foaf:knows ?known .\n?known foaf:homepage ?homepage .\n}"},
-    {id:3,descrizione:"SELECT DISTINCT ?concept\nWHERE {\n?s a ?concept .\n}"},
-    {id:4,descrizione:"PREFIX space: <http://purl.org/net/schemas/space/>\nSELECT ?craft\n{\n ?craft a space:Spacecraft\n}"}
-];
-
 var id;
 var yasqe;
 $(document).ready(function() {
@@ -34,10 +16,10 @@ $(document).ready(function() {
     }
     createQueryList();
 
-    YASQE.defaults.sparql.endpoint = endPoint;
+    /*YASQE.defaults.sparql.endpoint = endPoint;
     //create a string coded https://it.wikipedia.org/wiki/Basic_access_authentication
     YASQE.defaults.sparql.headers = {Authorization: 'Basic ' + btoa(userName + ":" + passWord)};
-    YASQE.defaults.value = /*sparql.prefixes +*/
+    YASQE.defaults.value = /!*sparql.prefixes +*!/
         "SELECT DISTINCT ?namedGraph {\n"+
         "	GRAPH ?namedGraph {\n" +
         "		?subject ?predicate ?object \n" +
@@ -52,7 +34,7 @@ $(document).ready(function() {
                 }
             }
         }
-    });
+    });*/
 });
 
 var createQueryList = function () {
@@ -116,7 +98,8 @@ var getDescriptionFromId = function(){
                 var row = queryList[i];
                 if (row[0] == id) {
                     descr = row[1];
-                    var x = descr.split("£");
+                    document.getElementById("description").innerHTML=descr;
+                    /*var x = descr.split("£");
                     for(var j = 0; j < x.length; ++j){
                         if(j==0){
                             yasqe.setValue(x[j]);
@@ -124,7 +107,7 @@ var getDescriptionFromId = function(){
                             var old = yasqe.getValue();
                             yasqe.setValue(old + "\n" + x[j]);
                         }
-                    }
+                    }*/
                 }
             }
         },
@@ -137,8 +120,7 @@ var getDescriptionFromId = function(){
 
 var setQueryParams = function () {
     var params = document.getElementById("inputParameters").value;
-    var old = yasqe.getValue();
-    yasqe.setValue(old + "\n" + params);
+    return params;
 }
 
 //function called when pressed set credential
@@ -158,7 +140,7 @@ var sendToEditorSparql=function(){
         },
         cache:false,
         success: function(data ){
-            window.open("index.html?query="+data,"_self")
+            window.open("index.html?query="+data+"?"+setQueryParams(),"_self")
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(""+xhr.status +thrownError);

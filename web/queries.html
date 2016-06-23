@@ -52,8 +52,10 @@
             </div>
             <div class="col-md-8" style="vertical-align: middle;">
                 <h1>Queries Management</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et
+                    dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
+                    aliquid ex ea commodi consequatur.</p>
             </div>
         </div>
     </div>
@@ -61,11 +63,10 @@
 
 <div id="pageContent" class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div id="editDiv" class="form-group">
                 <label for="selectQueryList">Predefined Queries:</label>
-                <select id="selectQueryList" class="form-control" style="width: 60%"
-                        onchange="getDescriptionFromId()"></select>
+                <select id="selectQueryList" class="form-control" onchange="getDescriptionFromId()"></select>
             </div>
 
         </div>
@@ -79,8 +80,8 @@
     <div class="row ">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="queries">Description:</label>
-                <div id="queries"></div>
+                <label for="description">Description:</label>
+                <textarea readonly contenteditable="true" class="form-control" rows="8" id="description"></textarea>
             </div>
         </div>
     </div>
@@ -91,35 +92,33 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-7">
             <div id="ParamsDiv" class="form-group">
                 <label for="inputParameters">Parameters:</label>
                 <div class="input-group">
                     <input id="inputParameters" type="text" class="form-control" placeholder="Insert params...">
                     <div class="input-group-btn">
-                    <button type="button" class="btn btn-default"  onclick="setQueryParams()">Add params</button>
-                        <button id="editBtn" type="button" class="btn btn-default" onclick="sendToEditorSparql()">Edit</button>
+                        <button id="editBtn" type="button" class="btn btn-default" onclick="sendToEditorSparql()">Edit
+                        </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
 
-<div class="jumbotron" style="margin-top: 50px">
-    <ul class="list-inline" align="middle" id="footer_linkeddata">
+    <div class="jumbotron" style="margin-top: 50px">
+        <ul class="list-inline" align="middle" id="footer_linkeddata">
 
-    </ul>
-    <hr>
-    <ul class="list-inline " align="middle" id="footer_social">
+        </ul>
+        <hr>
+        <ul class="list-inline " align="middle" id="footer_social">
 
-    </ul>
-    <hr>
-    <div align="middle">&copy; 2016 LinkedData.Center - <a href="https://github.com/linkeddatacenter/ekbcp"
-                                                           target="_blanck">fork on github</a></div>
-</div>
+        </ul>
+        <hr>
+        <div align="middle">&copy; 2016 LinkedData.Center - <a href="https://github.com/linkeddatacenter/ekbcp"
+                                                               target="_blanck">fork on github</a></div>
+    </div>
 </div>
 
 <!--jquery js-->
