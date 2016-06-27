@@ -22,8 +22,8 @@ var createQueryList = function () {
     var selectQueryList = document.getElementById("selectQueryList");
     $.ajax({
         type: 'GET',
-        //url: endPoint+"/queries",
-        url: "../doc/tests/queryList.txt",
+        url: endPoint+"/queries",
+        //url: "../doc/tests/queryList.txt",
         headers: {
             Accept: "text/csv; charset=utf-8",
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
@@ -52,31 +52,15 @@ var getDescriptionFromId = function () {
     var descr;
     $.ajax({
         type: 'GET',
-        //url: endPoint + "/querystore?query=' + id + "&view=description",
-        url: "../doc/tests/queryDescription.txt",
+        url: endPoint + "/querystore?query=' + id + "&view=description",
+        //url: "../doc/tests/queryDescription.txt",
         headers: {
             Accept: "text/turtle; charset=utf-8",
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         cache: false,
-        success: function (data) { //non serve fare il parser perchè chiamiamo solo una query alla volta attraverso l'id alle api
-            var queryList = CSV.parse(data);
-            for (var i in queryList) {
-                var row = queryList[i];
-                if (row[0] == id) {
-                    descr = row[1];
-                    document.getElementById("description").innerHTML = descr;
-                    /*var x = descr.split("£");
-                     for(var j = 0; j < x.length; ++j){
-                     if(j==0){
-                     yasqe.setValue(x[j]);
-                     } else {
-                     var old = yasqe.getValue();
-                     yasqe.setValue(old + "\n" + x[j]);
-                     }
-                     }*/
-                }
-            }
+        success: function (data) { 
+        	document.getElementById("description").innerHTML = data;
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert("" + xhr.status + thrownError);
@@ -100,8 +84,8 @@ var sendToEditorSparql = function () {
     //build an http get to request the list of ingestion in CSV format
     $.ajax({
         type: 'GET',
-        //url: endPoint+"/querystore?query=" + id + "&view=sparql&" + getQueryParams()
-        url: "../doc/tests/invioQuerySPARQL.txt",
+        url: endPoint+"/querystore?query=" + id + "&view=sparql&" + getQueryParams()
+        //url: "../doc/tests/invioQuerySPARQL.txt",
         headers: {
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
