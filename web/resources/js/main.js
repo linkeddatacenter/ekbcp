@@ -7,13 +7,24 @@ var analyticsId = 'UA-68082875-1';
 
 var setDefaultParams=function(){
   var cookie = readCookie();
+  var pathArray = window.location.pathname.split('/');
+  var currentPage = pathArray[pathArray.length - 1];
   if(cookie != "null"){
       var cookieValues = cookie.split(" ");
-      document.getElementById("actualEndpoint").value=cookieValues[0];
+	  
+	  if (cookieValues[0] == "https://hub1.linkeddata.center/demo" && currentPage == "index.html") {
+		  document.getElementById("actualEndpoint").value=(cookieValues[0]+"/sparql");
+	  } else {
+		  document.getElementById("actualEndpoint").value=cookieValues[0];
+	  }
       document.getElementById("ekbUser").value=cookieValues[1];
       document.getElementById("ekbPassword").value=cookieValues[2];
   } else {
-      document.getElementById("actualEndpoint").value=sparql.endpoint;
+	  if (currentPage == "index.html") {
+		  document.getElementById("actualEndpoint").value=(sparql.endpoint+"/sparql");
+	  } else {
+		  document.getElementById("actualEndpoint").value=sparql.endpoint;
+	  }
       document.getElementById("ekbUser").value=sparql.user;
       document.getElementById("ekbPassword").value=sparql.paswd;
   }
@@ -82,6 +93,10 @@ if (typeof d3 != 'undefined') {
 }
 
 $(document).ready(function () {
+	drawHeader();
+	drawConfig();
+	drawFooter();
+	setDefaultParams();
 });
 
 var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hidden='true'></div>")
@@ -212,7 +227,7 @@ var drawFooter = function () {
     }
 }
 
-drawHeader();
-drawConfig();
-drawFooter();
-setDefaultParams();
+// drawHeader();
+// drawConfig();
+// drawFooter();
+// setDefaultParams();
