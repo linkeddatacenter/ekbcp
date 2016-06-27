@@ -10,7 +10,7 @@ $(document).ready(function() {
         type: 'GET',
 		url: endPoint+"/activities",
         headers: {
-				Accept : "text/csv; charset=utf-8",
+				Accept : "text/csv",
 				Authorization: 'Basic ' + btoa(userName + ":" + passWord)
 		},
 		cache:false,
