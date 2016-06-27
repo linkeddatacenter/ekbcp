@@ -34,8 +34,8 @@ var createQueryList = function () {
             for (var i in queryList) {
                 var row = queryList[i];
                 var option = document.createElement("option");
-                option.value = row[0];
-                option.text = row[1];
+                option.value = row[0]; // uri
+                option.text = row[2]; // label
                 selectQueryList.appendChild(option);
 
             }
@@ -52,10 +52,10 @@ var getDescriptionFromId = function () {
     var descr;
     $.ajax({
         type: 'GET',
-        //url: endPoint+"/queries?id=$id&view=source",
+        //url: endPoint + "/querystore?query=' + id + "&view=description",
         url: "../doc/tests/queryDescription.txt",
         headers: {
-            Accept: "text/csv; charset=utf-8",
+            Accept: "text/turtle; charset=utf-8",
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         cache: false,
@@ -85,7 +85,7 @@ var getDescriptionFromId = function () {
     });
 }
 
-var setQueryParams = function () {
+var getQueryParams = function () {
     var params = document.getElementById("inputParameters").value;
     return params;
 }
@@ -100,14 +100,14 @@ var sendToEditorSparql = function () {
     //build an http get to request the list of ingestion in CSV format
     $.ajax({
         type: 'GET',
-        //url: endPoint+"/queries?id=$"+id+"&view=source",
+        //url: endPoint+"/querystore?query=" + id + "&view=sparql&" + getQueryParams()
         url: "../doc/tests/invioQuerySPARQL.txt",
         headers: {
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         cache: false,
         success: function (data) {
-            window.open("index.html?query=" + data + "?" + setQueryParams(), "_self")
+            window.open("index.html?query=" + data, "_self")
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert("" + xhr.status + thrownError);
