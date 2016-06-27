@@ -52,7 +52,7 @@ var getDescriptionFromId = function () {
     var descr;
     $.ajax({
         type: 'GET',
-        url: endPoint + "/querystore?query=' + id + "&view=description",
+        url: endPoint + "/querystore?query=" + id + "&view=description",
         //url: "../doc/tests/queryDescription.txt",
         headers: {
             Accept: "text/turtle; charset=utf-8",
