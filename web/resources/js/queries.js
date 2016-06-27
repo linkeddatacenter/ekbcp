@@ -19,7 +19,7 @@ var createQueryList = function () {
         url: endPoint+"/queries",
         //url: "../doc/tests/queryList.txt",
         headers: {
-            Accept: "text/csv; charset=utf-8",
+            Accept: "text/csv",
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         cache: false,
@@ -49,7 +49,7 @@ var getDescriptionFromId = function () {
         url: endPoint + "/querystore?query=" + id + "&view=description",
         //url: "../doc/tests/queryDescription.txt",
         headers: {
-            Accept: "text/turtle; charset=utf-8",
+            Accept: "text/turtle",
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         cache: false,
