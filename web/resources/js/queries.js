@@ -84,7 +84,7 @@ var sendToEditorSparql = function () {
     //build an http get to request the list of ingestion in CSV format
     $.ajax({
         type: 'GET',
-        url: endPoint+"/querystore?query=" + id + "&view=sparql&" + getQueryParams()
+        url: endPoint+"/querystore?query=" + id + "&view=sparql&" + getQueryParams(),
         //url: "../doc/tests/invioQuerySPARQL.txt",
         headers: {
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
