@@ -8,7 +8,7 @@ $(document).ready(function() {
     //build an http get to request the list of ingestion in CSV format
 	$.ajax({
         type: 'GET',
-		url: endPoint+"/queries",
+		url: endPoint+"/activities",
         headers: {
 				Accept : "text/csv; charset=utf-8",
 				Authorization: 'Basic ' + btoa(userName + ":" + passWord)
@@ -25,6 +25,7 @@ $(document).ready(function() {
                             "<td>"+row[2]+"</td>" +
                             "<td>"+row[3]+"</td>" +
                             "<td>"+row[4]+"</td>" +
+                            "<td>"+row[5]+"</td>" +
                             "<td>" +
                                 "<a href='"+endPoint+"/activity/"+row[0]+"' target='_blank'><button class=\"glyphicon glyphicon-italic\"><b></b></button></a>"//ingestion report link
                             "</td>" +
