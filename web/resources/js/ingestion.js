@@ -37,6 +37,11 @@ $(document).ready(function() {
 			
 		}
 	});
+	$("#formIngestion").submit(function (event) {
+		event.preventDefault();
+		submitPressed();
+
+	})
 
 
 
@@ -48,27 +53,26 @@ var submitPressed = function() {
     var userName = document.getElementById("ekbUser").value;
     var passWord = document.getElementById("ekbPassword").value;
     var endPoint = document.getElementById("actualEndpoint").value;
-    //endPoint="http://127.0.0.1";//for test
-    
+    //endPoint="http://127.0.0.1";//for tests
+	
     //build an http post to send the selected plan to the endpoint
 	$.ajax({
-
-		url: endPoint + '/activites',
-		type: 'POST',
-		data: selectedValue,
+		url : endPoint+'/activites',
+		type: "POST",
+		data : {"plan": selectedValue},
+		cache:false,
 		headers: {
+			"cache-control": "no-cache",
 			Authorization: 'Basic ' + btoa(userName + ':' + passWord),
-			Accept : 'text/csv; charset=utf-8',
-			'Content-Type' : 'text/plain; charset=utf-8'
 		},
-        cache:false,
-        success: function(data ){
-            location.reload(true);
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(""+xhr.status + " " + thrownError);
-        }
+
+		success: function(data, textStatus, jqXHR)
+		{	location.reload(true);	},
+
+		error: function (jqXHR, textStatus, errorThrown)
+		{	alert("error: "+jqXHR.status +" "+ errorThrown);}
 	});
+
 }
 
 //function called when refresh button in the table header is pressed

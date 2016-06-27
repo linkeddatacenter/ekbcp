@@ -58,18 +58,17 @@
 		<div id="pageContent" class="container-fluid">
             <h3>Request a new ingestion activity:</h3>
 			<div>
-				<form class="navbar-form indentedDiv" method="post">
+				<form class="navbar-form indentedDiv" id="formIngestion">
 					<div class="input-group" style="margin-top: 20px">
 						<span class="input-group-addon">Plan</span>
 						<select type="text" class="form-control" id="plan">
 							<option  class="selectPlanItem">Booting</option>
 							<option  class="selectPlanItem">Reasoning</option>
-							<option  class="selectPlanItem" selected="selected">Learning + Reasoning</option>
-							<option  class="selectPlanItem">Booting + Learning + Reasoning</option>
+							<option  class="selectPlanItem" selected="selected">Learning => Reasoning</option>
+							<option  class="selectPlanItem">Booting => Learning => Reasoning</option>
 						</select>
 					</div>
-					<button class="btn btn-info glyphicon glyphicon-send" style="margin-top: 20px" onclick="submitPressed()">
-						<!-- <img src="resources/images/submit.png"/> -->
+					<button class="btn btn-info glyphicon glyphicon-send" style="margin-top: 20px" >
 						<font face="arial" size="3">Submit</font>
 					</button>
 				</form>
@@ -101,14 +100,16 @@
 		</div>
 
         <div class="jumbotron" style="margin-top: 50px" >
-            <ul class="list-inline divCenter" align="center" id="footer_linkeddata">
-            </ul>
-            <hr>
+            <div class="divCenter"  style="margin-bottom: 20px">Powered by</div>
+            <ul class="list-inline divCenter"  id="footer_linkeddata">
 
-            <ul class="list-inline divCenter" align="center" id="footer_social">
             </ul>
             <hr>
-            <div class="divCenter">&copy;2016 LinkedData.Center - <a href="https://github.com/linkeddatacenter/ekbcp" target="_blanck">fork on github</a></div>
+            <ul class="list-inline divCenter" id="footer_social">
+
+            </ul>
+            <hr>
+            <div  class="divCenter" >&copy; 2016 LinkedData.Center - <a href="https://github.com/linkeddatacenter/ekbcp" target="_blanck">fork on github</a></div>
         </div>
 		
         <!--jquery js-->
