@@ -12,7 +12,7 @@ var resetParams=function () {
 var yasgui;
 
 // TODO: not on document ready but on main ready
-$(document).ready(function() {
+var onCreate=function() {
     //get the username, password and endpoint value in the inputs
     var userName = document.getElementById("ekbUser").value;
     var passWord = document.getElementById("ekbPassword").value;
@@ -30,7 +30,7 @@ $(document).ready(function() {
         "	} \n" +
         "} LIMIT 10";
     yasgui = YASGUI(document.getElementById("sparql"));
-});
+};
 
 var getUrlParams = function(key) {
     var values = [];
