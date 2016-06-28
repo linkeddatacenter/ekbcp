@@ -64,7 +64,7 @@
         <div class="col-md-7">
             <div id="editDiv" class="form-group">
                 <label for="selectQueryList">Predefined Queries:</label>
-                <select id="selectQueryList" class="form-control" onchange="getDescriptionFromId(document.getElementById("selectQueryList").value)"></select>
+                <select id="selectQueryList" class="form-control" onchange="getDescriptionFromId(this.value)"></select>
             </div>
 
         </div>
@@ -96,7 +96,7 @@
                 <div class="input-group">
                     <input id="inputParameters" type="text" class="form-control" placeholder="Insert params...">
                     <div class="input-group-btn">
-                        <button id="editBtn" type="button" class="btn btn-default" onclick="sendToEditorSparql(document.getElementById("selectQueryList").value)">Edit
+                        <button id="editBtn" type="button" class="btn btn-default" onclick="sendToEditorSparql($('#selectQueryList').value)">Edit
                         </button>
                     </div>
                 </div>
@@ -125,11 +125,13 @@
         crossorigin="anonymous"></script>
 
 
-<script src="resources/js/csv.js"></script>
 <!--main js load menu and menage default data-->
 <script src="resources/js/main.js?v=2"></script>
 <!--local queries js-->
 <script src="resources/js/queries.js"></script>
+<!-- CSV parser-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
+
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
