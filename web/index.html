@@ -93,29 +93,9 @@
         <!--YASGUI js-->
         <script src='http://cdn.jsdelivr.net/yasgui/2.3.1/yasgui.min.js' crossorigin="anonymous" ></script>
         <!--main js load menu and menage default data-->
-        <script src="resources/js/main.js?v=2"></script>
+        <script src="resources/js/main.js"></script>
         <!--local sparql js-->
         <script src="resources/js/sparql.js"></script>
-        <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script src="d3sparql.js"></script>
-        <script>
-            function exec() {
-                var endpoint = "http://dbpedia.org/sparql";
-                var sparql =document.getElementById("domanda").value;
-                d3sparql.query(endpoint, sparql, render);
-            }
-            function render(json) {
-                // set options and call the d3sparql.xxxxx visualization methods in this library ...
-                var config = {
-                    "charge": -500,
-                    "distance": 50,
-                    "width": 1000,
-                    "height": 750,
-                    "selector": "#grafico"
-                }
-                d3sparql.forcegraph(json, config);
-            }
-        </script>
         <!--google analystic-->
         <script>
          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
