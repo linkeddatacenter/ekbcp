@@ -11,8 +11,6 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- YASQE css-->
-    <link href='http://cdn.jsdelivr.net/yasqe/2.10.0/yasqe.min.css' rel='stylesheet' type='text/css'/>
     <!-- local css-->
     <link href="resources/css/ekbcp.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -66,7 +64,7 @@
         <div class="col-md-7">
             <div id="editDiv" class="form-group">
                 <label for="selectQueryList">Predefined Queries:</label>
-                <select id="selectQueryList" class="form-control" onchange="getDescriptionFromId()"></select>
+                <select id="selectQueryList" class="form-control" onchange="getDescriptionFromId(document.getElementById("selectQueryList").value)"></select>
             </div>
 
         </div>
@@ -98,7 +96,7 @@
                 <div class="input-group">
                     <input id="inputParameters" type="text" class="form-control" placeholder="Insert params...">
                     <div class="input-group-btn">
-                        <button id="editBtn" type="button" class="btn btn-default" onclick="sendToEditorSparql()">Edit
+                        <button id="editBtn" type="button" class="btn btn-default" onclick="sendToEditorSparql(document.getElementById("selectQueryList").value)">Edit
                         </button>
                     </div>
                 </div>
@@ -127,8 +125,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
-<!--YASQE js-->
-<script src='http://cdn.jsdelivr.net/yasqe/2.10.0/yasqe.bundled.min.js'></script>
+
 
 <script src="resources/js/csv.js"></script>
 <!--main js load menu and menage default data-->
