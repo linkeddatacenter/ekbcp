@@ -1,4 +1,0 @@
-1,Automobili
-2,Nascite
-3,Elettrodomestici
-4,Case Vendute

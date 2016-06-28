@@ -4,29 +4,24 @@ if (!console.log) {
   console = {log:function(){}};
 };
 var analyticsId = 'UA-68082875-1';
+var defaultEndpoint = 'http://pub.linkeddata.center/demo';
+var defaultUser = 'demo';
+var defaultPassword = 'demo';
+
 
 var setDefaultParams=function(){
   var cookie = readCookie();
   var pathArray = window.location.pathname.split('/');
   var currentPage = pathArray[pathArray.length - 1];
   if(cookie != "null"){
-      var cookieValues = cookie.split(" ");
-	  
-	  if (cookieValues[0] == "https://hub1.linkeddata.center/demo" && currentPage == "index.html") {
-		  document.getElementById("actualEndpoint").value=(cookieValues[0]+"/sparql");
-	  } else {
-		  document.getElementById("actualEndpoint").value=cookieValues[0];
-	  }
-      document.getElementById("ekbUser").value=cookieValues[1];
-      document.getElementById("ekbPassword").value=cookieValues[2];
+      var cookieValues = cookie.split(" "); 
+	  document.getElementById("ekbEndpoint").value= atob(cookieValues[0]);
+      document.getElementById("ekbUser").value=atob(cookieValues[1]);
+      document.getElementById("ekbPassword").value=atob(cookieValues[2]);
   } else {
-	  if (currentPage == "index.html") {
-		  document.getElementById("actualEndpoint").value=(sparql.endpoint+"/sparql");
-	  } else {
-		  document.getElementById("actualEndpoint").value=sparql.endpoint;
-	  }
-      document.getElementById("ekbUser").value=sparql.user;
-      document.getElementById("ekbPassword").value=sparql.paswd;
+	  document.getElementById("ekbEndpoint").value=defaultEndpoint;
+      document.getElementById("ekbUser").value=defaultUser;
+      document.getElementById("ekbPassword").value=defaultPassword;
   }
 };
 
@@ -48,49 +43,28 @@ var readCookie = function(){
 }
 
 var writeCookie = function(){
-    userName = document.getElementById("ekbUser").value;
-    passWord = document.getElementById("ekbPassword").value;
-    endPoint = document.getElementById("actualEndpoint").value;
+    userName = btoa(document.getElementById("ekbUser").value);
+    passWord = btoa(document.getElementById("ekbPassword").value);
+    endPoint = btoa(document.getElementById("ekbEndpoint").value);
 
     var name = "credentialCookie";
-    var value = endPoint+" "+userName+" "+passWord;
-    var life = 14400; //14400 minute = 1 day
+    var value = endPoint+" "+ userName+ " " + passWord;
+    var ttl = 14400 * 24 * 60 * 60 * 1000 ; //14400 minute = 1 day
    
     var d = new Date();
-    d.setTime(d.getTime() + (life * 24 * 60 * 60 * 1000));
+    d.setTime(d.getTime() + (ttl));
     var expires = "expires=" + d.toUTCString();
     document.cookie = name + "=" + value + "; " + expires;
 };
 
-var sparql = {
-    endpoint: "https://hub1.linkeddata.center/demo",
-    user: "demo",
-    paswd: "demo",
-};
 
-// Init loader.
-$.ajaxSetup({
-    beforeSend: function () {
-        $('#loader').show();
-    },
-    complete: function () {
-        $('#loader').hide();
-        //if (goToHash) goToHash();
-    },
-    success: function () {
-    },
-    url: sparql.url,
-});
-
-/**
- * helpers
- */
-if (typeof d3 != 'undefined') {
-    var formatPercentage = d3.format("%");
-    var formatThousands = d3.format(",g");
-    var formatLargeShortForm = d3.format(".2s");
-    var formatNumber = d3.format(",n");
-}
+// helpers
+// if (typeof d3 != 'undefined') {
+//     var formatPercentage = d3.format("%");
+//     var formatThousands = d3.format(",g");
+//     var formatLargeShortForm = d3.format(".2s");
+//     var formatNumber = d3.format(",n");
+// }
 
 $(document).ready(function () {
 	drawHeader();
@@ -99,6 +73,7 @@ $(document).ready(function () {
 	setDefaultParams();
 });
 
+/*
 var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hidden='true'></div>")
     .html('<div class="modal-dialog modal-lg ">' +
         '  <div class="modal-content">' +
@@ -112,6 +87,7 @@ var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hid
         '</div><!-- /.modal-dialog -->')
     .appendTo($("body"));
 var modal = modalDiv.modal({show: false});
+*/
 
 //draw button config
 var drawConfig = function () {
@@ -128,7 +104,7 @@ var drawConfig = function () {
         "<div class=\"form-group\">" +
         "<div class=\"input-group\">" +
         "<span class=\"input-group-addon\">Endpoint</span>" +
-        "<input type=\"text\" class=\"form-control\" id=\"actualEndpoint\">" +
+        "<input type=\"text\" class=\"form-control\" id=\"ekbEndpoint\">" +
         "</div>" +
         "<div class=\"input-group\">" +
         "<span class=\"input-group-addon\">Username</span>" +
@@ -226,8 +202,3 @@ var drawFooter = function () {
         img.appendTo(anchor);
     }
 }
-
-// drawHeader();
-// drawConfig();
-// drawFooter();
-// setDefaultParams();

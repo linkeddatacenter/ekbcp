@@ -1,14 +1,21 @@
+//function called when pressed set credential
+var resetParams = function() {
+	writeCookie();
+	location.reload(true);
+}
+
+
+// TODO: not on document ready but on main ready
 $(document).ready(function() {
     //get the username, password and endpoint value in the inputs
     var userName = document.getElementById("ekbUser").value;
     var passWord = document.getElementById("ekbPassword").value;
-    var endPoint = document.getElementById("actualEndpoint").value;
-    //endPoint="http://127.0.0.1";//for test
+    var endPoint = document.getElementById("ekbEndpoint").value;
     
     //build an http get to request the list of ingestion in CSV format
 	$.ajax({
         type: 'GET',
-		url: endPoint+"/activities",
+		url: endPoint + "/activities",
         headers: {
 				Accept : "text/csv",
 				Authorization: 'Basic ' + btoa(userName + ":" + passWord)
@@ -34,17 +41,15 @@ $(document).ready(function() {
 				}
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
-			alert(""+xhr.status + " " + thrownError);
+			alert("Error loading activities " + xhr.status + " " + thrownError);
 			
 		}
 	});
+	
 	$("#formIngestion").submit(function (event) {
 		event.preventDefault();
 		submitPressed();
-
 	})
-
-
 
 });
 
@@ -53,7 +58,7 @@ var submitPressed = function() {
 	var selectedValue =$('#plan').find(":selected").text();
     var userName = document.getElementById("ekbUser").value;
     var passWord = document.getElementById("ekbPassword").value;
-    var endPoint = document.getElementById("actualEndpoint").value;
+    var endPoint = document.getElementById("ekbEndpoint").value;
     //endPoint="http://127.0.0.1";//for tests
 	
     //build an http post to send the selected plan to the endpoint
@@ -63,7 +68,6 @@ var submitPressed = function() {
 		data : {"plan": selectedValue},
 		cache:false,
 		headers: {
-			"cache-control": "no-cache",
 			Authorization: 'Basic ' + btoa(userName + ':' + passWord),
 		},
 
@@ -71,7 +75,7 @@ var submitPressed = function() {
 		{	location.reload(true);	},
 
 		error: function (jqXHR, textStatus, errorThrown)
-		{	alert("error: "+jqXHR.status +" "+ errorThrown);}
+		{	alert("error submitting activity: "+jqXHR.status +" "+ errorThrown);}
 	});
 
 }
@@ -81,8 +85,3 @@ var refreshTable = function() {
 	location.reload(true);
 }
 
-//function called when pressed set credential
-var resetParams = function() {
-	writeCookie();
-	location.reload(true);
-}

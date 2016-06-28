@@ -1,28 +1,33 @@
+//reassign the endpoint and the Authorization header
+//everytime there is a change on one of the inputs
+var resetParams=function () {
+	writeCookie();
+    for (var tabId in yasgui.tabs) {
+       yasgui.closeTab(tabId);
+    }
+    location.reload(true);
+
+};
+
 var yasgui;
-var userName, passWord, endPoint;
 
+// TODO: not on document ready but on main ready
 $(document).ready(function() {
-    //There is some text on the HTML which we'll need to fill dynamically from javascript:
-    $("#actualEndpoint").text(sparql.endpoint).attr("href", sparql.endpoint);
-
     //get the username, password and endpoint value in the inputs
-    userName = document.getElementById("ekbUser").value;
-    passWord = document.getElementById("ekbPassword").value;
-    endPoint = document.getElementById("actualEndpoint").value;
-	
-	//if the endpoint insert is equal to the default
-	//it insert the /sparql for go to the database
-	if (endPoint == "https://hub1.linkeddata.center/demo") {
-		endPoint += "/sparql";
-	}
-
+    var userName = document.getElementById("ekbUser").value;
+    var passWord = document.getElementById("ekbPassword").value;
+    var sparqlEndPoint = document.getElementById("ekbEndpoint").value + '/sparql';
     var namedGraphs = getUrlParams("named-graph-uri");
+    
+    //There is some text on the HTML which we'll need to fill dynamically from javascript:
+    //TODO: what doses it means?????
+    $("#actualEndpoint").text(sparqlEndPoint).attr("href", sparqlEndPoint);
 
     YASGUI.YASQE.defaults.sparql.namedGraphs = namedGraphs;
-    YASGUI.YASQE.defaults.sparql.endpoint = endPoint;
+    YASGUI.YASQE.defaults.sparql.endpoint = sparqlEndPoint;
     //create a string coded https://it.wikipedia.org/wiki/Basic_access_authentication
     YASGUI.YASQE.defaults.sparql.headers = {Authorization: 'Basic ' + btoa(userName + ":" + passWord)};
-    YASGUI.YASQE.defaults.value = /*sparql.prefixes +*/
+    YASGUI.YASQE.defaults.value = 
         "SELECT DISTINCT ?namedGraph {\n"+
         "	GRAPH ?namedGraph {\n" +
         "		?subject ?predicate ?object \n" +
@@ -43,22 +48,3 @@ var getUrlParams = function(key) {
     }
     return values;
 };
-
-//disable regular lodlaundromat loader behaviour
-$.ajaxSetup({
-    beforeSend: function() {
-
-    },
-});
-
-//reassign the endpoint and the Authorization header
-//everytime there is a change on one of the inputs
-var resetParams=function () {
-	writeCookie();
-    for (var tabId in yasgui.tabs) {
-       yasgui.closeTab(tabId);
-    }
-    location.reload(true);
-
-};
-
