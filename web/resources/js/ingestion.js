@@ -4,6 +4,25 @@ var resetParams = function() {
 	location.reload(true);
 }
 
+var config = {
+	delimiter: "",	// auto-detect
+	newline: "",	// auto-detect
+	header: false,
+	dynamicTyping: false,
+	preview: 0,
+	encoding: "",
+	worker: false,
+	comments: false,
+	step: undefined,
+	complete: undefined,
+	error: undefined,
+	download: false,
+	skipEmptyLines: false,
+	chunk: undefined,
+	fastMode: undefined,
+	beforeFirstChunk: undefined,
+	withCredentials: undefined
+}
 
 // TODO: not on document ready but on main ready
 var onCreate=function() {
@@ -14,41 +33,37 @@ var onCreate=function() {
     
     //build an http get to request the list of ingestion in CSV format
 	$.ajax({
-        type: 'GET',
+		type: 'GET',
 		url: endPoint + "/activities",
-        headers: {
-				Accept : "text/csv",
-				Authorization: 'Basic ' + btoa(userName + ":" + passWord)
+		headers: {
+			Accept : "text/csv",
+			Authorization: 'Basic ' + btoa(userName + ":" + passWord)
 		},
 		cache:false,
-		success: function(data ){
-				var tableRows=CSV.parse(data);
-				for(var i in tableRows ){
-					var row=tableRows[i];
-					if (i > 0) {
-						document.getElementById("ingestionTable").innerHTML+=
-							"<tr id="+i+">" +
-								"<td style=\"vertical-align: middle;\">"+row[0]+"</td>" +
-								"<td style=\"vertical-align: middle;\">"+row[1]+"</td>" +
-								"<td style=\"vertical-align: middle;\">"+row[2]+"</td>" +
-								"<td style=\"vertical-align: middle;\">"+row[3]+"</td>" +
-								"<td style=\"vertical-align: middle;\">"+row[4]+"</td>" +
-								"<td style=\"vertical-align: middle;\">"+row[5]+"</td>" +
-								"<td style=\"vertical-align: middle;\">" +
-									"<a href='"+endPoint+"/activity/"+row[0]+"' target='_blank'><button class=\"btn btn-default glyphicon glyphicon-link\"><b></b></button></a>"//ingestion report link
-								"</td>" +
-							"</tr>";
-						//assign color to this row if status is 
-						// var classRow = document.getElementById(i);
-						// if (row[2] == "completed") {
-							// classRow.className += "success";
-						// }
-					}
-				}
-			},
+		success: function(data){
+			var tableRows=Papa.parse(data, config);
+			var dati = tableRows.data; // contiene 3 array
+			for(var j = 1; j < dati.length -1; ++j){
+				var row = dati[j];
+				document.getElementById("ingestionTable").innerHTML+=
+					"<tr>" +
+					"<td>"+row[0]+"</td>" +
+					"<td>"+row[1]+"</td>" +
+					"<td>"+row[2]+"</td>" +
+					"<td>"+row[3]+"</td>" +
+					"<td>"+row[4]+"</td>" +
+					"<td>"+row[5]+"</td>" +
+					"<td>" +
+					"<a href='"+endPoint+"/activity/"+row[0]+"' target='_blank'><button class=\"glyphicon glyphicon-italic\"><b></b></button></a>"//ingestion report link
+				"</td>" +
+				"</tr>";
+			}
+
+
+		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			alert("Error loading activities " + xhr.status + " " + thrownError);
-			
+
 		}
 	});
 	
