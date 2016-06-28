@@ -19,10 +19,6 @@ $(document).ready(function() {
     var sparqlEndPoint = document.getElementById("ekbEndpoint").value + '/sparql';
     var namedGraphs = getUrlParams("named-graph-uri");
     
-    //There is some text on the HTML which we'll need to fill dynamically from javascript:
-    //TODO: what doses it means?????
-    $("#actualEndpoint").text(sparqlEndPoint).attr("href", sparqlEndPoint);
-
     YASGUI.YASQE.defaults.sparql.namedGraphs = namedGraphs;
     YASGUI.YASQE.defaults.sparql.endpoint = sparqlEndPoint;
     //create a string coded https://it.wikipedia.org/wiki/Basic_access_authentication
