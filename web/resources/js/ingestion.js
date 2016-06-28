@@ -25,19 +25,25 @@ var onCreate=function() {
 				var tableRows=CSV.parse(data);
 				for(var i in tableRows ){
 					var row=tableRows[i];
-					document.getElementById("ingestionTable").innerHTML+=
-                        "<tr>" +
-                            "<td>"+row[0]+"</td>" +
-                            "<td>"+row[1]+"</td>" +
-                            "<td>"+row[2]+"</td>" +
-                            "<td>"+row[3]+"</td>" +
-                            "<td>"+row[4]+"</td>" +
-                            "<td>"+row[5]+"</td>" +
-                            "<td>" +
-                                "<a href='"+endPoint+"/activity/"+row[0]+"' target='_blank'><button class=\"glyphicon glyphicon-italic\"><b></b></button></a>"//ingestion report link
-                            "</td>" +
-                        "</tr>";
-						//decide to use the I or the Link symbol (glyphicon glyphicon-link)
+					if (i > 0) {
+						document.getElementById("ingestionTable").innerHTML+=
+							"<tr id="+i+">" +
+								"<td style=\"vertical-align: middle;\">"+row[0]+"</td>" +
+								"<td style=\"vertical-align: middle;\">"+row[1]+"</td>" +
+								"<td style=\"vertical-align: middle;\">"+row[2]+"</td>" +
+								"<td style=\"vertical-align: middle;\">"+row[3]+"</td>" +
+								"<td style=\"vertical-align: middle;\">"+row[4]+"</td>" +
+								"<td style=\"vertical-align: middle;\">"+row[5]+"</td>" +
+								"<td style=\"vertical-align: middle;\">" +
+									"<a href='"+endPoint+"/activity/"+row[0]+"' target='_blank'><button class=\"btn btn-default glyphicon glyphicon-link\"><b></b></button></a>"//ingestion report link
+								"</td>" +
+							"</tr>";
+						//assign color to this row if status is 
+						// var classRow = document.getElementById(i);
+						// if (row[2] == "completed") {
+							// classRow.className += "success";
+						// }
+					}
 				}
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
