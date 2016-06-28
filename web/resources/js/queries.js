@@ -4,6 +4,26 @@ var resetParams = function () {
     location.reload(true);
 }
 
+var config = {
+    delimiter: "",	// auto-detect
+    newline: "",	// auto-detect
+    header: false,
+    dynamicTyping: false,
+    preview: 0,
+    encoding: "",
+    worker: false,
+    comments: false,
+    step: undefined,
+    complete: undefined,
+    error: undefined,
+    download: false,
+    skipEmptyLines: false,
+    chunk: undefined,
+    fastMode: undefined,
+    beforeFirstChunk: undefined,
+    withCredentials: undefined
+}
+
 var onCreate=function () {
     createQueryList();
 };
@@ -14,7 +34,7 @@ var createQueryList = function () {
     var userName = document.getElementById("ekbUser").value;
     var passWord = document.getElementById("ekbPassword").value;
     var ekbEndPoint = document.getElementById("ekbEndpoint").value;
-
+    
     $.ajax({
         type: 'GET',
         url: ekbEndPoint + "/queries",
@@ -24,13 +44,6 @@ var createQueryList = function () {
         },
         success: function (data) {
             var queryList = Papa.parse(data, config);
-            /*for (var i in queryList) {
-             var row = queryList[i];
-             var option = document.createElement("option");
-             option.value = row[0]; // uri
-             option.text = row[2]; // label
-             selectQueryList.appendChild(option);
-             }*/
             var dati = queryList.data;
             for(var i = 1; i < dati.length-1 ; ++i){
                 var element = dati[i];
@@ -39,7 +52,7 @@ var createQueryList = function () {
                 option.text = element[2]; // label
                 selectQueryList.appendChild(option);
             }
-            var x = 1;
+            getDescriptionFromId(selectQueryList.value);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert("Error loading kb queries : " + xhr.status + thrownError);

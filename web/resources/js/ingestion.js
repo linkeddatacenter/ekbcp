@@ -4,6 +4,25 @@ var resetParams = function() {
 	location.reload(true);
 }
 
+var config = {
+	delimiter: "",	// auto-detect
+	newline: "",	// auto-detect
+	header: false,
+	dynamicTyping: false,
+	preview: 0,
+	encoding: "",
+	worker: false,
+	comments: false,
+	step: undefined,
+	complete: undefined,
+	error: undefined,
+	download: false,
+	skipEmptyLines: false,
+	chunk: undefined,
+	fastMode: undefined,
+	beforeFirstChunk: undefined,
+	withCredentials: undefined
+}
 
 // TODO: not on document ready but on main ready
 var onCreate=function() {
@@ -14,11 +33,11 @@ var onCreate=function() {
     
     //build an http get to request the list of ingestion in CSV format
 	$.ajax({
-        type: 'GET',
+		type: 'GET',
 		url: endPoint + "/activities",
-        headers: {
-				Accept : "text/csv",
-				Authorization: 'Basic ' + btoa(userName + ":" + passWord)
+		headers: {
+			Accept : "text/csv",
+			Authorization: 'Basic ' + btoa(userName + ":" + passWord)
 		},
 		cache:false,
 		success: function(data){
