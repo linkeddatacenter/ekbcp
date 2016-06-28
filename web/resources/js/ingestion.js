@@ -6,7 +6,7 @@ var resetParams = function() {
 
 
 // TODO: not on document ready but on main ready
-$(document).ready(function() {
+var onCreate=function() {
     //get the username, password and endpoint value in the inputs
     var userName = document.getElementById("ekbUser").value;
     var passWord = document.getElementById("ekbPassword").value;
@@ -51,7 +51,7 @@ $(document).ready(function() {
 		submitPressed();
 	})
 
-});
+};
 
 //sent a new injestion to the endpoint
 var submitPressed = function() {

@@ -4,9 +4,9 @@ var resetParams = function () {
     location.reload(true);
 }
 
-$(document).ready(function () {
+var onCreate=function () {
     createQueryList();
-});
+};
 
 var createQueryList = function () {
     var editDiv = document.getElementById("editDiv");
@@ -25,11 +25,13 @@ var createQueryList = function () {
         success: function (data) {
             var queryList = CSV.parse(data);
             for (var i in queryList) {
-                var row = queryList[i];
-                var option = document.createElement("option");
-                option.value = row[0]; // uri
-                option.text = row[2]; // label
-                selectQueryList.appendChild(option);
+                if (i > 0) {
+                    var row = queryList[i];
+                    var option = document.createElement("option");
+                    option.value = row[0]; // uri
+                    option.text = row[2]; // label
+                    selectQueryList.appendChild(option);
+                }
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {

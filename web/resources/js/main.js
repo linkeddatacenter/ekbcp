@@ -71,6 +71,7 @@ $(document).ready(function () {
 	drawConfig();
 	drawFooter();
 	setDefaultParams();
+    onCreate();
 });
 
 /*
