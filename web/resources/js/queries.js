@@ -14,7 +14,7 @@ var createQueryList = function () {
     var userName = document.getElementById("ekbUser").value;
     var passWord = document.getElementById("ekbPassword").value;
     var ekbEndPoint = document.getElementById("ekbEndpoint").value;
-    
+
     $.ajax({
         type: 'GET',
         url: ekbEndPoint + "/queries",
@@ -23,16 +23,23 @@ var createQueryList = function () {
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         success: function (data) {
-            var queryList = CSV.parse(data);
-            for (var i in queryList) {
-                if (i > 0) {
-                    var row = queryList[i];
-                    var option = document.createElement("option");
-                    option.value = row[0]; // uri
-                    option.text = row[2]; // label
-                    selectQueryList.appendChild(option);
-                }
+            var queryList = Papa.parse(data, config);
+            /*for (var i in queryList) {
+             var row = queryList[i];
+             var option = document.createElement("option");
+             option.value = row[0]; // uri
+             option.text = row[2]; // label
+             selectQueryList.appendChild(option);
+             }*/
+            var dati = queryList.data;
+            for(var i = 1; i < dati.length-1 ; ++i){
+                var element = dati[i];
+                var option = document.createElement("option");
+                option.value = element[0]; // uri
+                option.text = element[2]; // label
+                selectQueryList.appendChild(option);
             }
+            var x = 1;
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert("Error loading kb queries : " + xhr.status + thrownError);
@@ -74,7 +81,7 @@ var sendToEditorSparql = function (uri) {
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         success: function (data) {
-            window.open("index.html?query=" + data, "_self")
+            window.open("index.html?query=" + encodeURIComponent(data), "_self")
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert("Error exploding parametric query : " + xhr.status + thrownError);
