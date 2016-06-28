@@ -41,9 +41,12 @@ var createQueryList = function () {
 }
 
 var getDescriptionFromId = function (uri) {
+    var userName = document.getElementById("ekbUser").value;
+    var passWord = document.getElementById("ekbPassword").value;
+    var ekbEndPoint = document.getElementById("ekbEndpoint").value;
     $.ajax({
         type: 'GET',
-        url: endPoint + "/querystore?query=" + encodeURIComponent(uri) + "&view=description",
+        url: ekbEndPoint + "/querystore?query=" + encodeURIComponent(uri) + "&view=description",
         headers: {
             Accept: "text/turtle",
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
@@ -60,10 +63,13 @@ var getDescriptionFromId = function (uri) {
 
 var sendToEditorSparql = function (uri) {
 	var params = document.getElementById("inputParameters").value;
+    var userName = document.getElementById("ekbUser").value;
+    var passWord = document.getElementById("ekbPassword").value;
+    var ekbEndPoint = document.getElementById("ekbEndpoint").value;
     //build an http get to request the list of ingestion in CSV format
     $.ajax({
         type: 'GET',
-        url: endPoint+"/querystore?query=" + encodeURIComponent(uri) + "&view=sparql&" + params,
+        url: ekbEndPoint+"/querystore?query=" + encodeURIComponent(uri) + "&view=sparql&" + params,
         headers: {
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
