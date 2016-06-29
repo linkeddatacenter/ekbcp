@@ -147,6 +147,7 @@ var drawHeader = function () {
         }
         $("<span></span>").text(config.title).appendTo(anchor);
     };
+
     var items = [
         {href: "http://linkeddata.center", img: "resources/images/linkeddataBrowserIco.png"},
         {href: "index.html", title: "SPARQL"},
