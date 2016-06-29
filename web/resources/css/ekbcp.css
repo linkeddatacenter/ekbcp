@@ -28,7 +28,15 @@
     height: 20px;
     width: 20px;
 }
+#panel {
+    min-width: 400px;
+    padding: 14px 14px 14px 14px;
+    overflow: visible;
+}
 
-.divCenter {	
+.divCenter {
     text-align: center;
+}
+#panel:focus{
+    display: block; !important;
 }

@@ -8,7 +8,13 @@ var defaultEndpoint = 'http://pub.linkeddata.center/demo';
 var defaultUser = 'demo';
 var defaultPassword = 'demo';
 
-
+$(document).ready(function () {
+    drawHeader();
+    drawConfig();
+    drawFooter();
+    setDefaultParams();
+    onCreate();
+});
 var setDefaultParams=function(){
   var cookie = readCookie();
   var pathArray = window.location.pathname.split('/');
@@ -57,80 +63,89 @@ var writeCookie = function(){
     document.cookie = name + "=" + value + "; " + expires;
 };
 
-// helpers
-// if (typeof d3 != 'undefined') {
-//     var formatPercentage = d3.format("%");
-//     var formatThousands = d3.format(",g");
-//     var formatLargeShortForm = d3.format(".2s");
-//     var formatNumber = d3.format(",n");
-// }
-
-$(document).ready(function () {
-	drawHeader();
-	drawConfig();
-	drawFooter();
-	setDefaultParams();
-    onCreate();
-});
-
-// var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hidden='true'></div>")
-//     .html('<div class="modal-dialog modal-lg ">' +
-//         '  <div class="modal-content">' +
-//         '    <div class="modal-header">' +
-//         '    </div>' +
-//         '    <div class="modal-body">' +
-//         '      <p>One fine body&hellip;</p>' +
-//         '    </div>' +
-//         '    <div class="modal-footer"></div>' +
-//         '  </div><!-- /.modal-content -->' +
-//         '</div><!-- /.modal-dialog -->')
-//     .appendTo($("body"));
-// var modal = modalDiv.modal({show: false});
-
 
 //draw button config
 var drawConfig = function () {
-    //create div contains the params
-    var div = $("<div></div>").attr({
-        class: "collapse",
-        id: "params",
-        "aria-expanded": "true",
-        style: "height:1px"
-    }).appendTo(container); //insert into div container
-
-    document.getElementById("params").innerHTML += "" +
-        "\<form class=\"navbar-form navbar-right\" role=\"search\"\>" +
-        "<div class=\"form-group\">" +
-        "<div class=\"input-group\">" +
-        "<span class=\"input-group-addon\">Endpoint</span>" +
-        "<input type=\"text\" class=\"form-control\" id=\"ekbEndpoint\">" +
-        "</div>" +
-        "<div class=\"input-group\">" +
-        "<span class=\"input-group-addon\">Username</span>" +
-        "<input type=\"text\" class=\"form-control\" id=\"ekbUser\">" +
-        "</div>" +
-        "<div class=\"input-group\">" +
-        "<span class=\"input-group-addon\">Password</span>" +
-        "<input type=\"password\" class=\"form-control\" id=\"ekbPassword\">" +
-        "</div>" +
-        "</div>" +
-        "<button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\">Set Credential</button>" +
-        "</form>";
-
     var item = $("<ul></ul>").attr({
         class: "nav navbar-nav navbar-right"
     }).appendTo("#nav"); //insert into div nav
-    var elem = $("<li></li>").appendTo(item);
-    var anchor = $("<a></a>").appendTo(elem);
+    var elem = $("<li></li>").attr({"id":"cont"}).appendTo(item);
+    var anchor = $("<a></a>").attr({
+        "href":"#",
+        "class":"dropdown-toggle",
+        "data-toggle":"dropdown",
+        "aria-expanded":"true"
+    }).appendTo(elem);
     var button = $("<button></button>").appendTo(anchor);
     button.addClass("btn btn-default");
     button.attr({
         "data-toggle": "collapse",
-        "data-target": "#params",
-        "aria-expanded": "false"
+        "data-target": "#params"
     });
-    var span = $("<span></span>").attr("aria-hidden", "true").appendTo(button);
+    var span = $("<span></span>").appendTo(button);
     span.addClass("glyphicon glyphicon-cog");
+    //TODO translate to jquery
+    var s="";
+    s += "<ul id=\"panel\" class='dropdown-menu' role='menu'>";
+    s += "				<li>";
+    s += "                          <a><span > Profile</span></a>";
+    s += "				<\/li>";
+    s += "				<li>";
+    s += "                          <a><span>Change Password</span></a>";
+    s += "				<\/li>";
+    s += "				<li>";
+    s += "                          <a href='#collapse'data-toggle='collapse'><span>Set Credential...</span></a>";
+    s += "							<div class=\"panel-collapse collapse\" id='collapse'>";
+    s += "					 <div class=\"col-md-12\">"+
+                                        "<div style='height: 10px'><\/div>"+
+                                        "<div class=\"form-group\">" +
+                                        "<div class=\"input-group\">" +
+                                        "<span class=\"input-group-addon\" style='min-width: 100px'>Endpoint</span>" +
+                                        "<input type=\"text\" class=\"form-control\" id=\"ekbEndpoint\">" +
+                                        "</div>" + "<div style='height: 14px'><\/div>"+
+                                        "<div class=\"input-group\">" +
+                                        "<span class=\"input-group-addon\" style='min-width: 100px'>Username</span>" +
+                                        "<input type=\"text\" class=\"form-control\" id=\"ekbUser\">" +
+                                        "</div>" +"<div style='height: 14px'><\/div>"+
+                                        "<div class=\"input-group\">" +
+                                        "<span class=\"input-group-addon\" style='min-width: 100px'>Password</span>" +
+                                        "<input type=\"password\" class=\"form-control\" id=\"ekbPassword\">";
+    s += "							<\/div>"+ "<div style='height: 10px'><\/div>";
+    s +=                             "<button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\">Ok</button>";
+    s += "					 <\/div>";
+    s += "				<\/li>";
+    s += "				<li>";
+    s += "                          <a><span>Clear cache</span></a>";
+    s += "				<\/li>";
+    s += "				<li>";
+    s += "                          <a><span>Delete All</span></a>";
+    s += "				<\/li>";
+    s += "				<li>";
+    s += "                          <a><span>Purge Activities</span></a>";
+    s += "				<\/li>";
+    s += "			<\/ul>";
+    var spanSetCredential=$("<span></span>").text("Set credential...").appendTo("");
+    document.getElementById("cont").innerHTML+=s;
+    $('ul.dropdown-menu').on('click', function(event){
+        var events = $._data(document, 'events') || {};
+        events = events.click || [];
+        for(var i = 0; i < events.length; i++) {
+            if(events[i].selector) {
+
+                //Check if the clicked element matches the event selector
+                if($(event.target).is(events[i].selector)) {
+                    events[i].handler.call(event.target, event);
+                }
+
+                // Check if any of the clicked element parents matches the
+                // delegated event selector (Emulating propagation)
+                $(event.target).parents(events[i].selector).each(function(){
+                    events[i].handler.call(this, event);
+                });
+            }
+        }
+        event.stopPropagation();
+    });
 };
 
 //draw header
