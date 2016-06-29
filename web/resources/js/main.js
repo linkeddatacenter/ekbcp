@@ -87,12 +87,12 @@ var drawConfig = function () {
     //TODO translate to jquery
     var s="";
     s += "<ul id=\"panel\" class='dropdown-menu' role='menu'>";
-    s += "				<li>";
+   /* s += "				<li>";
     s += "                          <a><span > Profile</span></a>";
     s += "				<\/li>";
     s += "				<li>";
     s += "                          <a><span>Change Password</span></a>";
-    s += "				<\/li>";
+    s += "				<\/li>";*/
     s += "				<li>";
     s += "                          <a href='#collapse'data-toggle='collapse'><span>Set Credential...</span></a>";
     s += "							<div class=\"panel-collapse collapse\" id='collapse'>";
@@ -114,7 +114,7 @@ var drawConfig = function () {
     s +=                             "<button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\">Ok</button>";
     s += "					 <\/div>";
     s += "				<\/li>";
-    s += "				<li>";
+    			/*<li>";
     s += "                          <a><span>Clear cache</span></a>";
     s += "				<\/li>";
     s += "				<li>";
@@ -122,7 +122,7 @@ var drawConfig = function () {
     s += "				<\/li>";
     s += "				<li>";
     s += "                          <a><span>Purge Activities</span></a>";
-    s += "				<\/li>";
+    s += "				<\/li>";*/
     s += "			<\/ul>";
     var spanSetCredential=$("<span></span>").text("Set credential...").appendTo("");
     document.getElementById("cont").innerHTML+=s;
