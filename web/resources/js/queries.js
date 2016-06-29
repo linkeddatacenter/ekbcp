@@ -55,7 +55,7 @@ var createQueryList = function () {
             getDescriptionFromId(selectQueryList.value);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert("Error loading kb queries : " + xhr.status + " " + thrownError);
+            alert("Error loading kb queries : " + xhr.status + " " + thrownError + + xhr.responseText);
         }
     });
 }
@@ -75,7 +75,7 @@ var getDescriptionFromId = function (uri) {
         	document.getElementById("description").innerHTML = data;
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert("Error loading query description : " + xhr.status + " " + thrownError);
+            alert("Error loading query description : " + xhr.status + " " + thrownError + xhr.responseText);
         }
     });
 }
@@ -97,7 +97,7 @@ var sendToEditorSparql = function (uri) {
             window.open("index.html?query=" + encodeURIComponent(data), "_self")
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert("Error exploding parametric query : " + xhr.status + thrownError);
+            alert("Error exploding parametric query : " + xhr.status + thrownError + xhr.responseText);
         }
     });
 }
