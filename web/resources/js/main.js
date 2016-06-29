@@ -152,6 +152,7 @@ var drawHeader = function () {
         {href: "index.html", title: "SPARQL"},
         {href: "ingestion.html",title: "Ingestion"},
         {href: "queries.html", title: "Queries"},
+        {href: "kbConfig.html", title: "KB Config"},
     ];
     var lastIndexOf = document.URL.lastIndexOf("/");
     var basename = "";

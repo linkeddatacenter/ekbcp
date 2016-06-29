@@ -32,3 +32,10 @@
 .divCenter {	
     text-align: center;
 }
+
+.configError {
+    margin-top: 10px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #a94442;
+}
