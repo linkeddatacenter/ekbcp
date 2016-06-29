@@ -92,7 +92,7 @@ var submitPressed = function() {
 		{	location.reload(true);	},
 
 		error: function (jqXHR, textStatus, errorThrown)
-		{	alert("error submitting activity: "+jqXHR.status +" "+ errorThrown + xhr.responseText);}
+		{	alert("error submitting activity: "+jqXHR.status +" "+ errorThrown + jqXHR.responseText);}
 	});
 
 }
