@@ -44,7 +44,6 @@
                 </nav>
             </div>
         </div>
-
         <div class="jumbotron" style="height:100%; position:relative;">
             <div class="container">
                 <div class="row">
@@ -58,7 +57,12 @@
                     <div class="col-md-8" style="vertical-align: middle;">
                         <h1>SPARQL Access</h1>
                         <p>For an in-depth overview of the data, we provide a live SPARQL endpoint in which your graph database instance can be queried.</p>
-                    </div>
+						
+						<span class="divInline GeneratedText" style="margin-top:40px; font-size:1.8em;"><b>Using endpoint: </b></span>
+						<span class="divInline GeneratedText" id="usingEndpoint"></span>
+						<button class="divInline btn btn-default pull-right GeneratedText" style="margin-top:20px; font-size:1.2em;" id="btnChangeOperation" onclick="changeOperation()"></button>
+					</div>
+					
                 </div>
             </div>
         </div>
