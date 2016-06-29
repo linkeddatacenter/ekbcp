@@ -7,7 +7,7 @@ during [wikimedia 2016](https://wikimania2016.wikimedia.org/wiki/Main_Page)  in 
 EKBCP uses [YASGUI](http://doc.yasgui.org/) and [3Dsparql](http://biohackathon.org/d3sparql/) libraries integrated with the [EKB APIs] (http://LinkedData.Center/api) provided by
  [LinkedData.Center](http://LinkedData.Center/)
 
-Have a look to our EKBCP service running at [http://linkeddatacenter.github.io/ekbcp/web](http://linkeddatacenter.github.io/ekbcp/web)
+Have a look to our EKBCP service running at [http://cpanel.linkeddata.center/](http://cpanel.linkeddata.center/)
 
 The project is still ongoing..
 
