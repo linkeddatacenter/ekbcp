@@ -30,7 +30,7 @@ var getInputText = function () {
             editor.value = data;
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert("Error loading kb queries : " + xhr.status + " " + thrownError);
+            alert("Error loading kb queries : " + xhr.status + " " + thrownError + xhr.responseText);
         }
     });
 }

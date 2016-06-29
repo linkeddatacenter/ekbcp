@@ -58,7 +58,7 @@ var onCreate=function() {
 			}
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-			alert("Error loading activities " + xhr.status + " " + thrownError);
+			alert("Error loading activities " + xhr.status + " " + thrownError + xhr.responseText);
 
 		}
 	});
@@ -92,7 +92,7 @@ var submitPressed = function() {
 		{	location.reload(true);	},
 
 		error: function (jqXHR, textStatus, errorThrown)
-		{	alert("error submitting activity: "+jqXHR.status +" "+ errorThrown);}
+		{	alert("error submitting activity: "+jqXHR.status +" "+ errorThrown + xhr.responseText);}
 	});
 
 }
