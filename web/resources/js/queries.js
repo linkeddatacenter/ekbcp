@@ -55,7 +55,7 @@ var createQueryList = function () {
             getDescriptionFromId(selectQueryList.value);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert("Error loading kb queries : " + xhr.status + thrownError);
+            alert("Error loading kb queries : " + xhr.status + " " + thrownError);
         }
     });
 }
@@ -75,7 +75,7 @@ var getDescriptionFromId = function (uri) {
         	document.getElementById("description").innerHTML = data;
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert("Error loading query description : " + xhr.status + thrownError);
+            alert("Error loading query description : " + xhr.status + " " + thrownError);
         }
     });
 }

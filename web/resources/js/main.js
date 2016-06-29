@@ -57,7 +57,6 @@ var writeCookie = function(){
     document.cookie = name + "=" + value + "; " + expires;
 };
 
-
 // helpers
 // if (typeof d3 != 'undefined') {
 //     var formatPercentage = d3.format("%");
@@ -74,21 +73,20 @@ $(document).ready(function () {
     onCreate();
 });
 
-/*
-var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hidden='true'></div>")
-    .html('<div class="modal-dialog modal-lg ">' +
-        '  <div class="modal-content">' +
-        '    <div class="modal-header">' +
-        '    </div>' +
-        '    <div class="modal-body">' +
-        '      <p>One fine body&hellip;</p>' +
-        '    </div>' +
-        '    <div class="modal-footer"></div>' +
-        '  </div><!-- /.modal-content -->' +
-        '</div><!-- /.modal-dialog -->')
-    .appendTo($("body"));
-var modal = modalDiv.modal({show: false});
-*/
+// var modalDiv = $("<div class='modal  fade'  tabindex='-1' role='dialog' aria-hidden='true'></div>")
+//     .html('<div class="modal-dialog modal-lg ">' +
+//         '  <div class="modal-content">' +
+//         '    <div class="modal-header">' +
+//         '    </div>' +
+//         '    <div class="modal-body">' +
+//         '      <p>One fine body&hellip;</p>' +
+//         '    </div>' +
+//         '    <div class="modal-footer"></div>' +
+//         '  </div><!-- /.modal-content -->' +
+//         '</div><!-- /.modal-dialog -->')
+//     .appendTo($("body"));
+// var modal = modalDiv.modal({show: false});
+
 
 //draw button config
 var drawConfig = function () {
@@ -119,7 +117,6 @@ var drawConfig = function () {
         "<button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\">Set Credential</button>" +
         "</form>";
 
-
     var item = $("<ul></ul>").attr({
         class: "nav navbar-nav navbar-right"
     }).appendTo("#nav"); //insert into div nav
@@ -136,10 +133,7 @@ var drawConfig = function () {
     span.addClass("glyphicon glyphicon-cog");
 };
 
-
-/**
- * draw header
- */
+//draw header
 var drawHeader = function () {
     var addItem = function (config) {
         var item = $("<li></li>").appendTo(topNavBar);
@@ -155,7 +149,6 @@ var drawHeader = function () {
     };
     var items = [
         {href: "http://linkeddata.center", img: "resources/images/linkeddataBrowserIco.png"},
-        {href: "/knowledgebase", title: "Knowledge base"},
         {href: "index.html", title: "SPARQL"},
         {href: "ingestion.html",title: "Ingestion"},
         {href: "queries.html", title: "Queries"},
@@ -179,6 +172,7 @@ var drawHeader = function () {
     }
   };
 
+//draw footer
 var drawFooter = function () {
     var items = [
         {href: "", img: "resources/images/LDC_Subscriptions.png", class: "img-responsive"},
