@@ -32,3 +32,17 @@
 .divCenter {	
     text-align: center;
 }
+
+.inLineBlock{
+	display:inline-block !important;
+	margin-left: 5px !important;
+	}
+	
+
+.GeneratedText {
+font-family:sans-serif;
+font-size:1.5em;
+line-height:1.3em;
+margin-top:10px;
+}
+
