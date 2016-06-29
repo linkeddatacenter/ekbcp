@@ -2,7 +2,7 @@ Welcome to EKBCP
 ==============================
 
 EKBCP project provides an interactive control panel for [LinkedData.Center services] (http://LinkedData.Center/) and was initially developed in Esino Lario 
-during [wikimedia 2016](https://wikimania2016.wikimedia.org/wiki/Main_Page)  in LinkedData.Center Campus in Esino Lario (Italy). 
+during [wikimedia 2016](https://wikimania2016.wikimedia.org/wiki/Main_Page) in LinkedData.Center Campus in Esino Lario (Italy). 
 
 EKBCP uses [YASGUI](http://doc.yasgui.org/) and [3Dsparql](http://biohackathon.org/d3sparql/) libraries integrated with the [EKB APIs] (http://LinkedData.Center/api) provided by
  [LinkedData.Center](http://LinkedData.Center/)
@@ -12,7 +12,7 @@ Have a look to our EKBCP service running at [http://linkeddatacenter.github.io/e
 The project is still ongoing..
 
 ## How to use/modify
-You need LinkedData.Center credential to access a knowledge base ( endpoint, usename and password). Y
+You need LinkedData.Center credential to access a knowledge base ( endpoint, usename and password).
 
  1. clone locally the project and publish web directory in a web server (you can use some feature just opening the file directly from browser) 
  2. set your LinkedData.Center credentials in the upper right menu and enjoy the web
