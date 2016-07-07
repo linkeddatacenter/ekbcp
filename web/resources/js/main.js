@@ -86,13 +86,9 @@ var drawConfig = function () {
     span.addClass("glyphicon glyphicon-cog");
     //TODO translate to jquery
     var s="";
+
     s += "<ul id=\"panel\" class='dropdown-menu' role='menu'>";
-   /* s += "				<li>";
-    s += "                          <a><span > Profile</span></a>";
-    s += "				<\/li>";
-    s += "				<li>";
-    s += "                          <a><span>Change Password</span></a>";
-    s += "				<\/li>";*/
+    
     s += "				<li>";
     s += "                          <a href='#collapse'data-toggle='collapse'><span>Set Credential...</span></a>";
     s += "							<div class=\"panel-collapse collapse\" id='collapse'>";
@@ -114,7 +110,17 @@ var drawConfig = function () {
     s +=                             "<button type=\"button\" class=\"btn btn-default\" onclick=\"resetParams()\">Ok</button>";
     s += "					 <\/div>";
     s += "				<\/li>";
-    			/*<li>";
+    
+    s += "				<li>";
+    s += "                          <a href='kbConfig.html'><span >Knowledge Base configuration...</span></a>";
+    s += "				<\/li>";
+   /* 
+    s += "				<li>";
+    s += "                          <a><span>Change Password</span></a>";
+    s += "				<\/li>";
+
+    
+    s += "				<li>";
     s += "                          <a><span>Clear cache</span></a>";
     s += "				<\/li>";
     s += "				<li>";
@@ -122,7 +128,8 @@ var drawConfig = function () {
     s += "				<\/li>";
     s += "				<li>";
     s += "                          <a><span>Purge Activities</span></a>";
-    s += "				<\/li>";*/
+    s += "				<\/li>";
+   */
     s += "			<\/ul>";
     var spanSetCredential=$("<span></span>").text("Set credential...").appendTo("");
     document.getElementById("cont").innerHTML+=s;
@@ -168,7 +175,6 @@ var drawHeader = function () {
         {href: "index.html", title: "SPARQL"},
         {href: "ingestion.html",title: "Ingestion"},
         {href: "queries.html", title: "Queries"},
-        {href: "kbConfig.html", title: "KB Config"},
     ];
     var lastIndexOf = document.URL.lastIndexOf("/");
     var basename = "";
