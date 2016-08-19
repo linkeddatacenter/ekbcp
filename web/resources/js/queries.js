@@ -68,7 +68,6 @@ var getDescriptionFromId = function (uri) {
         type: 'GET',
         url: ekbEndPoint + "/querystore?query=" + encodeURIComponent(uri) + "&view=description",
         headers: {
-            Accept: "text/turtle",
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         success: function (data) { 
