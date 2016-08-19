@@ -45,7 +45,7 @@ var createQueryList = function () {
         success: function (data) {
             var queryList = Papa.parse(data, config);
             var dati = queryList.data;
-            for(var i = 1; i < dati.length-1 ; ++i){
+            for(var i = 1; i < dati.length ; ++i){
                 var element = dati[i];
                 var option = document.createElement("option");
                 option.value = element[0]; // uri
