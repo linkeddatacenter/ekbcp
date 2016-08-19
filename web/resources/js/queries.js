@@ -5,7 +5,7 @@ var resetParams = function () {
 }
 
 var config = {
-    delimiter: "",	// auto-detect
+    delimiter: ",",	// auto-detect
     newline: "",	// auto-detect
     header: false,
     dynamicTyping: false,
@@ -17,7 +17,7 @@ var config = {
     complete: undefined,
     error: undefined,
     download: false,
-    skipEmptyLines: false,
+    skipEmptyLines: true,
     chunk: undefined,
     fastMode: undefined,
     beforeFirstChunk: undefined,
