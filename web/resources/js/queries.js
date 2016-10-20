@@ -2,7 +2,7 @@
 var resetParams = function () {
     writeCookie();
     location.reload(true);
-}
+};
 
 var config = {
     delimiter: ",",	// auto-detect
@@ -22,7 +22,7 @@ var config = {
     fastMode: undefined,
     beforeFirstChunk: undefined,
     withCredentials: undefined
-}
+};
 
 var onCreate=function () {
     createQueryList();
@@ -58,7 +58,7 @@ var createQueryList = function () {
             alert("Error loading kb queries : " + xhr.status + " " + thrownError + + xhr.responseText);
         }
     });
-}
+};
 
 var getDescriptionFromId = function (uri) {
     var userName = document.getElementById("ekbUser").value;
@@ -77,7 +77,7 @@ var getDescriptionFromId = function (uri) {
             alert("Error loading query description : " + xhr.status + " " + thrownError + xhr.responseText);
         }
     });
-}
+};
 
 
 var sendToEditorSparql = function (uri) {
@@ -93,10 +93,10 @@ var sendToEditorSparql = function (uri) {
             Authorization: 'Basic ' + btoa(userName + ":" + passWord)
         },
         success: function (data) {
-            window.open("index.html?query=" + encodeURIComponent(data), "_self")
+            window.open("index.html?query=" + encodeURIComponent(data), "_self");
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert("Error exploding parametric query : " + xhr.status + thrownError + xhr.responseText);
         }
     });
-}
+};

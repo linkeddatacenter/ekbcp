@@ -46,7 +46,7 @@ var readCookie = function(){
           }
       }
       return "null";
-}
+};
 
 var writeCookie = function(){
     userName = btoa(document.getElementById("ekbUser").value);
@@ -219,4 +219,4 @@ var drawFooter = function () {
         if (items[i].class)img.addClass(items[i].class);
         img.appendTo(anchor);
     }
-}
+} ;

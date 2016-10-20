@@ -18,7 +18,7 @@ var onCreate=function() {
     var passWord = document.getElementById("ekbPassword").value;
 	var sparqlEndPoint = document.getElementById("ekbEndpoint").value;
 	var namedGraphs = getUrlParams("named-graph-uri");
-	var defaultQuary;
+	var defaultQuery;
 	var urlParam=getUrlParams("operation");
 	
 	if(urlParam[0]&&urlParam[0]=="update"){
@@ -28,7 +28,7 @@ var onCreate=function() {
 	}else{
 		sparqlEndPoint+="/sparql";
 		document.getElementById("btnChangeOperation").innerHTML="Switch to update endpoint";
-		defaultQuary="SELECT DISTINCT ?namedGraph {\n"+
+		defaultQuery="SELECT DISTINCT ?namedGraph {\n"+
 					 "GRAPH ?namedGraph {\n" +
 					 "?subject ?predicate ?object \n" +
 					 "} \n" +
@@ -36,7 +36,7 @@ var onCreate=function() {
 		
 	}
 	
-	document.getElementById("usingEndpoint").innerHTML=sparqlEndPoint
+	document.getElementById("usingEndpoint").innerHTML=sparqlEndPoint;
 	
   
     
@@ -44,7 +44,7 @@ var onCreate=function() {
     YASGUI.YASQE.defaults.sparql.endpoint = sparqlEndPoint;
     //create a string coded https://it.wikipedia.org/wiki/Basic_access_authentication
     YASGUI.YASQE.defaults.sparql.headers = {Authorization: 'Basic ' + btoa(userName + ":" + passWord)};
-    YASGUI.YASQE.defaults.value = defaultQuary;
+    YASGUI.YASQE.defaults.value = defaultQuery;
     yasgui = YASGUI(document.getElementById("sparql"));
 };
 
@@ -61,8 +61,8 @@ var getUrlParams = function(key) {
     return values;
 };
 
-var changeOperation = function(){
-	 for (var tabId in yasgui.tabs) {
+var changeOperation = function() {
+	for (var tabId in yasgui.tabs) {
        yasgui.closeTab(tabId);
     }
 	var url = window.location.href;
@@ -75,7 +75,6 @@ var changeOperation = function(){
 	}else{
 		url += "?operation=update";
 	}
-
 	window.location.href = url;
 	
-}
+};
